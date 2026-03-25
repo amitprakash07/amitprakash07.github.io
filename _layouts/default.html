@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      {%- if page.title -%}{{ page.title }} · {%- endif -%}{{ site.title }}
+    </title>
+    {%- if site.description -%}
+      <meta name="description" content="{{ site.description | escape }}" />
+    {%- endif -%}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+        <div class="nav__links">
+          <a href="{{ '/portfolio/' | relative_url }}">Portfolio</a>
+          <a href="{{ '/blogs/' | relative_url }}">Blog</a>
+          <a href="{{ '/toastmasters/' | relative_url }}">Toastmasters</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <span>© {{ site.time | date: '%Y' }} {{ site.title }}</span>
+      </div>
+    </footer>
+  </body>
+</html>

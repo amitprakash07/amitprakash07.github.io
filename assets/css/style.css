@@ -1,0 +1,83 @@
+:root {
+  --bg: #0b1020;
+  --panel: #0f1730;
+  --text: #e8ebf2;
+  --muted: #aab3cc;
+  --link: #7aa2ff;
+  --border: rgba(255, 255, 255, 0.10);
+  --max: 980px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.6;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(122,162,255,0.18), transparent 60%),
+              radial-gradient(800px 500px at 80% 10%, rgba(168,85,247,0.12), transparent 55%),
+              var(--bg);
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 24px 18px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11, 16, 32, 0.70);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.nav__brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.nav__links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.page h1, .post h1 { margin: 0 0 12px; }
+.post__meta { margin: 0; color: var(--muted); }
+
+.card {
+  background: rgba(15, 23, 48, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: rgba(11, 16, 32, 0.40);
+}
+.site-footer__inner { color: var(--muted); font-size: 14px; }

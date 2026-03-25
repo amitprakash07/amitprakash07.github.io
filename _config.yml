@@ -1,0 +1,33 @@
+title: Amit Prakash
+description: Portfolio, blog, and notes
+url: ""
+baseurl: ""
+
+markdown: kramdown
+permalink: /blogs/:year/:month/:day/:title/
+
+collections:
+  portfolio:
+    output: true
+    permalink: /portfolio/:path/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: "portfolio"
+    values:
+      layout: page
+  - scope:
+      path: "toastmasters"
+    values:
+      layout: page
+  - scope:
+      type: "posts"
+    values:
+      layout: post
+
+exclude:
+  - README.md
