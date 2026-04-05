@@ -63,6 +63,19 @@ a:hover { text-decoration: underline; }
 .page h1, .post h1 { margin: 0 0 12px; }
 .post__meta { margin: 0; color: var(--muted); }
 
+/* Markdown images: never wider than the text column (exclude home hero portrait) */
+.post__content img,
+.page img:not(.home-hero__image) {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 1rem 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
 .card {
   background: rgba(15, 23, 48, 0.72);
   border: 1px solid var(--border);
