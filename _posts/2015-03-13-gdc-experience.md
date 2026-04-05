@@ -14,14 +14,34 @@ source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/13/gdc-experien
 
 ![GDC 2015]({{ '/assets/img/blog/2015/gdc-experience/gdc-2015-banner.jpg' | relative_url }})
 
-**Game Developer Conference 2015** was a great experience: talks on cutting-edge **game engine** tech and meeting people passionate about games and graphics. I especially enjoyed sessions on **real-time graphics** for games—notably **DirectX 12** and NVIDIA’s **VXGI** talk on **voxelization**-based techniques for **dynamic lighting**.
+Game Developer Conference -2015 was one of the nice experience for me; from the presentation on the latest technology under the hood of the game engines to meeting passionate people in the game industry was really interesting. I really liked the talks on new advancement in the field of computer graphics for computer games. Especially, I liked the talks on DirectX12 and NVIDIA talk on voxelization based graphics library VXGI for dynamic lighting feature in the game. 
 
-**DirectX 12** adds more than raw features; it gives programmers more **flexibility and control** over renderers and shaders compared with **earlier Direct3D versions**. The memory model is also different from older APIs, which helps performance. Previously, some work that could have stayed on the **GPU** still bounced through the **CPU**; with DirectX 12, more of that load can stay on the GPU when available, which can improve frame rate and scaling.
+  
 
-NVIDIA’s **VXGI** for lighting stood out: it could noticeably improve **shadow clarity** (on the order of **50–60%** in the examples they showed) while still aiming for reasonable CPU/GPU cost and solid frame rates. Like any technique, it has **limitations**, but the tradeoffs were compelling.
 
-Beyond the technical talks, I met several interesting people. **Matt Rix** talked about **decompiling** libraries and engine packages to learn from them—focused in part on **Unity**—and how that can inform your own work. I also met **Gus Class** from **Google** during a **Unity on Android** workshop using **Google Cardboard**.
 
-GDC ’15 was valuable for **seeing where the industry was headed** and **meeting practitioners**. On **internships**, I didn’t find much that matched students: many booths were focused on **full-time** hiring, and **NVIDIA** wasn’t taking interns at the time when I asked.
+DirectX 12 features are not only advanced but it gives a lot flexibility and control to the programmers to write their own renderer and shaders as compared to the DirectX12. DirectX12 memory uses design is slightly different than the previous version which make it faster. On the other hand previous version of DirectX was not utilizing the complete GPU in a way that it was directing some of the operation to the GPUs and rest was directed to the CPUs; with DirectX12, this feature is been removed and most of the operations load is passed to the GPUs (if available) which makes the performance of the game much better. 
 
-**Advice for upcoming students (e.g. cohort C6):** if you can, get the **full access** pass—many of the best talks were only included there.
+  
+
+
+
+NVIDIA voxelization graphics library VXGI for lighting was really advanced features for rendering. It gives the more clarity to the shadow of the images (nearly by 50—60%) using the technique. Although it has certain limitation on its uses but gives the more clarity, it also take less CPU and GPU usage and gives higher frame rate. 
+
+  
+
+
+
+Apart from technical aspect of the GDC meet, I met few interesting people who are passionate about games and computer graphics. I met an Indie developer named Matt Rix. He explained how to decompile various libraries and engine packages and how they are helpful in making the better out of the decompiled code in the game. He was mainly focusing on the decompiling of the unity engine and discussed even it’s not illegal to have a decompiled source code for the engine. Another developer who seems interesting to me was from Google, Gus Class while attending the workshop on Unity development on Android using Google cardboard. 
+
+  
+
+
+
+GDC-15 was good for me to know the industry people and new advancement in technologies. As far as internship opportunities were concerned, I didn’t found any at all. Most of them were looking for full time applicants. Moreover, being interest in computer graphics, I tried to talk at booth of NVIDIA but they were not taking any interns. 
+
+  
+
+
+
+As advice is concerned, I have only one advice to upcoming students for C6, please take the full access pass, as most of the good talks and presentation are covered only in it.

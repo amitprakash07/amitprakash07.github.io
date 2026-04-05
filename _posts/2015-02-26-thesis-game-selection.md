@@ -11,11 +11,9 @@ tags:
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/02/26/thesis-game-selection"
 ---
 
-The semester opened with **thesis game ideas**. Each student or team pitched concepts; faculty would shortlist projects after the pitches.
+The beginning of the semester started with thesis game idea. All of the students told to come up with the idea either individually or with the team. Among all the game ideas, faculty were to choose some of them after judging the pitches of the game. I came up with game based on Social Attitude - "The Uncertain". The idea was to design and develop game levels based on the player social attitude.   
 
-I proposed **“The Uncertain”**—a game shaped by **social attitude**. The idea was to design levels that **react differently** depending on the player’s preferences or disposition.
-
-For example, some people like spiders and some don’t—the game would **respond differently** to each kind of player.
+For e.g. Some people like spiders and some are not - the game will response differently to both players in a different way. 
 
 ### Pitch slides — *The Uncertain*
 
@@ -40,4 +38,4 @@ After all pitches, faculty selected:
 7. **War Journalist**  
 8. **The Color of Sound**  
 
-We had about **two and a half weeks** to join one of the selected games and build a **prototype** for the **industry panel** (feedback and scoring). I chose **War Journalist**.
+We were given two and half weeks to choose any of the choosen game and start working on it for the prototype. After the prototype chosen game would be shown to the industry panel who will provide their feedback about the game and score them. I chose to work on War Journalist. 

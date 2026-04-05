@@ -12,14 +12,13 @@ tags:
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/04/01/through-the-lens"
 ---
 
-**Through the Lens** (*War Journalist*) was the game idea the faculty chose for us to prototype through **Industry Panel** day. It combined two pillars:
+Through the Lens(War Journalist) is the game idea chosen by the faculty to prototype until the Industry Panel day. Throught the Lens is the mix of two game ideas.
 
-1. Show the **power of journalism**  
-2. Let the player **take strong in-game photos** with a **virtual camera**  
+1) Show the power of Journalism 
 
-Early on we focused on prototyping the **camera system** so players could capture shots in-game with full camera-style controls, plus a **preview** flow to review photos taken during play.
+2) Taking Good Pictures inside the game using the virtual camera. 
 
-I built the **camera system** with **Lawrence** (artist and photographer) and implemented the **preview system**.
+Our initial main focus was to prototype the virtual camera system so that the player can take in game pictures with all functionalities inside the game and preview system to show the pictures taken in the game. I created the Camera system with the help of Lawrence (Artist + Photographer) and the preview system.
 
 ### Preview system (Blueprint)
 
