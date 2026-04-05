@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Mesh loading using Lua and shared shader"
+title: "Game engineering: Mesh loading using Lua and shared shader"
 date: 2014-11-16
 tags:
   - game-engine

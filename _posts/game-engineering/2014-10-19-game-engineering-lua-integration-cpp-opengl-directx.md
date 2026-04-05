@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Lua integration with C++, OpenGL, and DirectX"
+title: "Game engineering: Lua integration with C++, OpenGL, and DirectX"
 date: 2014-10-19
 tags:
   - game-engine

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Depth buffer and 3D transforms"
+title: "Game engineering: Depth buffer and 3D transforms"
 date: 2015-02-08
 tags:
   - game-engine

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Shader constants (uniforms) and moving objects"
+title: "Game engineering: Shader constants (uniforms) and moving objects"
 date: 2014-12-28
 tags:
   - game-engine

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Mesh builder — binary mesh assets"
+title: "Game engineering: Mesh builder — binary mesh assets"
 date: 2014-12-14
 tags:
   - game-engine

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Platform-independent shaders refactor"
+title: "Game engineering: Platform-independent shaders refactor"
 date: 2015-01-25
 tags:
   - game-engine

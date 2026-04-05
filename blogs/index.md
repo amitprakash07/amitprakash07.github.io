@@ -3,7 +3,7 @@ layout: page
 title: Blog
 ---
 
-Posts will appear here once we add them under `_posts/` (they’ll have URLs like `/blogs/YYYY/MM/DD/slug/`).
+Posts live under `_posts/game-engineering/`, `_posts/game-projects/`, etc. URLs look like `/blogs/game-engineering/YYYY/MM/DD/slug/` (the first path segment matches that folder name).
 
 {% for post in site.posts %}
 <div class="card" style="margin: 12px 0;">

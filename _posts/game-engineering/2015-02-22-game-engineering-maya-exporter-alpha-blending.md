@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "Maya exporter plugin and alpha blending"
+title: "Game engineering: Maya exporter plugin and alpha blending"
 date: 2015-02-22
 tags:
   - game-engine

@@ -4,7 +4,8 @@ url: ""
 baseurl: ""
 
 markdown: kramdown
-permalink: /blogs/:year/:month/:day/:title/
+# :categories comes from the folder under _posts/ (e.g. game-engineering, game-projects)
+permalink: /blogs/:categories/:year/:month/:day/:title/
 
 defaults:
   - scope:
