@@ -56,6 +56,6 @@ Below is the very basic demo of the system with arbitrary message.
 [Halau Information System on YouTube](https://www.youtube.com/watch?v=k4y85b2VjcU)
 
 <div class="video-embed">
-  <iframe src="https://www.youtube.com/watch?v=k4y85b2VjcU" title="Halau-Information System
+  <iframe src="https://www.youtube.com/embed/k4y85b2VjcU" title="Halau-Information System
  — YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
