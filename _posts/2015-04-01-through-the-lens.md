@@ -28,3 +28,13 @@ I built the **camera system** with **Lawrence** (artist and photographer) and im
 ### In-game pictures (Blueprint)
 
 ![In-game pictures — Blueprint]({{ '/assets/img/blog/2015/through-the-lens/ingame-pictures-blueprint.jpg' | relative_url }})
+
+
+### Video
+
+[Through The Lens on YouTube](https://www.youtube.com/watch?v=lXftZLrsOX0)
+
+<div class="video-embed">
+  <iframe src="https://www.youtube.com/watch?v=lXftZLrsOX0" title="Through The Lens
+ — YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
