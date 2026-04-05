@@ -189,21 +189,32 @@ a:hover { text-decoration: underline; }
   font-size: 0.95rem;
 }
 
-/* Responsive YouTube (and similar) embeds inside posts */
-.video-embed {
+/* YouTube / iframe embeds: same readable width as body text, fixed 16:9 proportion */
+.post__content .video-embed,
+.page .video-embed {
   position: relative;
   width: 100%;
-  max-width: 720px;
+  max-width: 100%;
   margin: 1rem 0;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 10px;
   border: 1px solid var(--border);
   background: #000;
 }
 
-.video-embed iframe {
+/* Older browsers without aspect-ratio: keep 16:9 via padding hack */
+@supports not (aspect-ratio: 16 / 9) {
+  .post__content .video-embed,
+  .page .video-embed {
+    height: 0;
+    padding-bottom: 56.25%;
+    aspect-ratio: auto;
+  }
+}
+
+.post__content .video-embed iframe,
+.page .video-embed iframe {
   position: absolute;
   top: 0;
   left: 0;
