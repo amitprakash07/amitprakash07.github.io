@@ -76,8 +76,141 @@ a:hover { text-decoration: underline; }
   gap: 14px;
 }
 
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.home-hero__media {
+  display: flex;
+  justify-content: center;
+}
+
+.home-hero__image {
+  width: 100%;
+  max-width: 242px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+.home-hero__eyebrow {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.home-hero h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.1;
+}
+
+.home-hero__subtitle {
+  margin: 8px 0 18px;
+  color: var(--link);
+  font-weight: 600;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 14px;
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 162, 255, 0.35);
+  background: rgba(122, 162, 255, 0.12);
+}
+
+.home-button:hover {
+  text-decoration: none;
+  background: rgba(122, 162, 255, 0.18);
+}
+
+.home-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: var(--muted);
+}
+
+.migrated-content {
+  display: grid;
+  gap: 14px;
+}
+
+.migrated-content > :first-child {
+  margin-top: 0;
+}
+
+.migrated-content h2,
+.migrated-content h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.migrated-content p,
+.migrated-content ul {
+  margin: 0;
+}
+
+.migrated-content ul {
+  padding-left: 20px;
+}
+
+.migrated-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Responsive YouTube (and similar) embeds inside posts */
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 1rem 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   background: rgba(11, 16, 32, 0.40);
 }
 .site-footer__inner { color: var(--muted); font-size: 14px; }
+
+@media (max-width: 720px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero__media {
+    justify-content: flex-start;
+  }
+}
