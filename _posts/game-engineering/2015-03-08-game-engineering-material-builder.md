@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "Game engineering: Material builder"
+title: "Game engine coursework: Material builder"
 date: 2015-03-08
 tags:
   - game-engine

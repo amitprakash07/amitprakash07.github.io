@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ebola Training Centre by Team CroIndia"
+title: "Project coursework: Ebola Training Centre by Team CroIndia"
 date: 2014-11-04
 tags:
   - rapid-prototyping

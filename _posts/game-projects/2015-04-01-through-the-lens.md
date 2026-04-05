@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Through the Lens"
+title: "Project coursework: Through the Lens"
 date: 2015-04-01
 tags:
   - war-journalist

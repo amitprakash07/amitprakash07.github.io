@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Circular AI -bhavior"
+title: "Project coursework: Circular AI -bhavior"
 date: 2015-10-11
 tags:
   - ai

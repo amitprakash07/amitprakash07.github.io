@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Thesis game selection"
+title: "Project coursework: Thesis game selection"
 date: 2015-02-26
 tags:
   - thesis

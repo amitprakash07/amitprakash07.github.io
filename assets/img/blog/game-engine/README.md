@@ -44,6 +44,6 @@ assets/img/blog/game-engine/
 └── 12-game-engineering-material-builder/
 ```
 
-Post titles in front matter are prefixed with **Game engineering:**. Published URLs are `/blogs/game-engineering/YYYY/MM/DD/<slug>/` (folder name plus date plus filename slug).
+Post titles in front matter are prefixed with **Game engine coursework:**. Published URLs are `/blogs/game-engineering/YYYY/MM/DD/<slug>/` (folder name plus date plus filename slug).
 
 When you add images, put them in the matching folder and tell the assistant which post (or number **1–12**); the post will be updated to reference `/assets/img/blog/game-engine/<folder>/…`.

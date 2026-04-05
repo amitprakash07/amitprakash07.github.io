@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "Game engineering: Asset build system — general approach"
+title: "Game engine coursework: Asset build system — general approach"
 date: 2014-11-30
 tags:
   - game-engine

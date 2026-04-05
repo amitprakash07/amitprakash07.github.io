@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chasing is fun — basic AI"
+title: "Project coursework: Chasing is fun — basic AI"
 date: 2015-09-06
 tags:
   - unity

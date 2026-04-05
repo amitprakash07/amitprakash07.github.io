@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Conduit - ElectroMag"
+title: "Project coursework: Conduit - ElectroMag"
 date: 2014-12-09
 tags:
   - unreal-engine

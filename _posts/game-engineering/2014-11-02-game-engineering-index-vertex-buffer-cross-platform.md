@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "Game engineering: Index and vertex buffer (cross-platform)"
+title: "Game engine coursework: Index and vertex buffer (cross-platform)"
 date: 2014-11-02
 tags:
   - game-engine

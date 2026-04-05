@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Installing Android device driver / ADB interface driver on Windows"
+title: "Project coursework: Installing Android device driver / ADB interface driver on Windows"
 date: 2015-03-08
 tags:
   - android

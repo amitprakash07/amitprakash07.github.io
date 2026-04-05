@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GDC experience"
+title: "Project coursework: GDC experience"
 date: 2015-03-13
 tags:
   - gdc

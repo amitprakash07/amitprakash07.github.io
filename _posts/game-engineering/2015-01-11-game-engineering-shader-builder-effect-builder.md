@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "Game engineering: Shader builder and effect builder"
+title: "Game engine coursework: Shader builder and effect builder"
 date: 2015-01-11
 tags:
   - game-engine

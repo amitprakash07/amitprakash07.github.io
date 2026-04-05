@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Halau -Extended"
+title: "Project coursework: Halau -Extended"
 date: 2015-09-25
 tags:
   - halau

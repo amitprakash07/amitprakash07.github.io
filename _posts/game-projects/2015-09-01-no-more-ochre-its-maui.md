@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "No more Ochre — it's Maui"
+title: "Project coursework: No more Ochre — it's Maui"
 date: 2015-09-01
 tags:
   - maui

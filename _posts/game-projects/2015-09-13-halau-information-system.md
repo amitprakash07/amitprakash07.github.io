@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Halau - Information System"
+title: "Project coursework: Halau - Information System"
 date: 2015-09-13
 tags:
   - unity

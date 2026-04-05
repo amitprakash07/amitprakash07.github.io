@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "Game engineering: Visual Studio solution setup and asset build system"
+title: "Game engine coursework: Visual Studio solution setup and asset build system"
 date: 2014-10-05
 tags:
   - game-engine
