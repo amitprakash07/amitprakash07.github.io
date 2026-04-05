@@ -63,6 +63,13 @@ a:hover { text-decoration: underline; }
 .page h1, .post h1 { margin: 0 0 12px; }
 .post__meta { margin: 0; color: var(--muted); }
 
+.post__wix-origin {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
 /* Markdown images: never wider than the text column (exclude home hero portrait) */
 .post__content img,
 .page img:not(.home-hero__image) {

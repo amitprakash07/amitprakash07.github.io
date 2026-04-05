@@ -11,6 +11,9 @@ layout: default
   </header>
 
   <div class="post__content">
+    {% if page.source_wix and page.categories contains 'game-engineering' %}
+    <p class="post__wix-origin">Older write-up with figures: <a href="{{ page.source_wix }}">original post on Wix</a>.</p>
+    {% endif %}
     {{ content }}
   </div>
 </article>
