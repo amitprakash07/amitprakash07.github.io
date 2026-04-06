@@ -7,7 +7,7 @@ title: Blog
 
 <div class="blog-index-sections">
   {% for section in site.data.blog_sections %}
-  {% assign url_marker = '/' | append: section.slug | append: '/' %}
+  {% capture url_marker %}/{{ section.slug }}/{% endcapture %}
   <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
     <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
     <div class="blog-index-card-grid">
@@ -16,9 +16,9 @@ title: Blog
         <article class="card blog-index-card">
           <div class="blog-index-card__date">{{ post.date | date: "%b %d, %Y" }}</div>
           <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-          {%- if post.excerpt -%}
+          {% if post.excerpt %}
           <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
-          {%- endif -%}
+          {% endif %}
         </article>
         {% endif %}
       {% endfor %}

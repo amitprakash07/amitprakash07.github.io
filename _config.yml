@@ -4,8 +4,6 @@ url: ""
 baseurl: ""
 
 markdown: kramdown
-# :categories comes from the folder under _posts/ (e.g. game-engineering, game-projects)
-permalink: /blogs/:categories/:year/:month/:day/:title/
 
 defaults:
   - scope:
@@ -20,10 +18,12 @@ defaults:
       path: "toastmasters"
     values:
       layout: page
+  # :categories = folder under _posts/ (e.g. game-engineering, game-projects). Posts only — do not set this as a global permalink or normal pages (e.g. blogs/index) break.
   - scope:
       type: "posts"
     values:
       layout: post
+      permalink: /blogs/:categories/:year/:month/:day/:title/
 
 exclude:
   - README.md
