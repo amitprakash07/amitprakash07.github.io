@@ -13,7 +13,12 @@ title: Blog
       {% for post in site.posts %}
         {% if post.categories contains section.slug %}
         <article class="card blog-index-card">
-          <div class="blog-index-card__date">{{ post.date | date: "%b %d, %Y" }}</div>
+          <div class="blog-index-card__date">
+            {{ post.date | date: "%b %d, %Y" }}
+            {%- if post.redirect_to_wix and post.source_wix -%}
+              <span class="blog-index-badge blog-index-badge--wix" title="Opens the archived Wix version">Wix archive</span>
+            {%- endif -%}
+          </div>
           <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
           {% if post.excerpt %}
           <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
