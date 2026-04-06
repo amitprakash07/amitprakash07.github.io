@@ -11,9 +11,25 @@ layout: default
   </header>
 
   <div class="post__content">
-    {%- if page.source_wix -%}
-    <p class="post__wix-origin">Older write-up with figures: <a href="{{ page.source_wix }}">original post on Wix</a>.</p>
+    {%- if page.redirect_to_wix and page.source_wix -%}
+    <p class="post__wix-origin">
+      Redirecting to the original Wix post:
+      <a href="{{ page.source_wix }}">{{ page.source_wix }}</a>
+    </p>
+    <script>
+      window.location.replace({{ page.source_wix | jsonify }});
+    </script>
+    <noscript>
+      <p class="post__wix-origin">
+        JavaScript is disabled. Open the original post here:
+        <a href="{{ page.source_wix }}">original post on Wix</a>.
+      </p>
+    </noscript>
+    {%- else -%}
+      {%- if page.source_wix -%}
+      <p class="post__wix-origin">Older write-up with figures: <a href="{{ page.source_wix }}">original post on Wix</a>.</p>
+      {%- endif -%}
+      {{ content }}
     {%- endif -%}
-    {{ content }}
   </div>
 </article>

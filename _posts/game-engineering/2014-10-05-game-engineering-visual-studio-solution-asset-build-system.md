@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "Game engine coursework: Visual Studio solution setup and asset build system"
 date: 2014-10-05
@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/assetbuildsystem"
+redirect_to_wix: true
 ---
 ## Visual Studio Solution Setup and Asset Build System
 
