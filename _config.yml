@@ -38,6 +38,18 @@ defaults:
     values:
       categories:
         - game-projects
+  - scope:
+      path: "_posts/interactive-computer-graphics"
+      type: "posts"
+    values:
+      categories:
+        - interactive-computer-graphics
+  - scope:
+      path: "_posts/ray-tracing"
+      type: "posts"
+    values:
+      categories:
+        - ray-tracing
 
 exclude:
   - README.md

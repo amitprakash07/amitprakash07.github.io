@@ -7,11 +7,12 @@ title: Blog
 
 <div class="blog-index-sections">
   {% for section in site.data.blog_sections %}
+  {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
+  {% if section_posts.size > 0 %}
   <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
     <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
     <div class="blog-index-card-grid">
-      {% for post in site.posts %}
-        {% if post.categories contains section.slug %}
+      {% for post in section_posts %}
         <article class="card blog-index-card">
           <div class="blog-index-card__date">
             {{ post.date | date: "%b %d, %Y" }}
@@ -24,9 +25,9 @@ title: Blog
           <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
           {% endif %}
         </article>
-        {% endif %}
       {% endfor %}
     </div>
   </section>
+  {% endif %}
   {% endfor %}
 </div>
