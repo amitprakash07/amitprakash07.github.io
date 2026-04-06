@@ -39,11 +39,12 @@ defaults:
       categories:
         - game-projects
   - scope:
-      path: "_posts/interactive-computer-graphics"
+      path: "_posts/computer-graphics/cpu-rasterizer"
       type: "posts"
     values:
       categories:
-        - interactive-computer-graphics
+        - computer-graphics
+        - cpu-rasterizer
   - scope:
       path: "_posts/ray-tracing"
       type: "posts"
