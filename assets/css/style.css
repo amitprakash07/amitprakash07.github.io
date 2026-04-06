@@ -153,26 +153,30 @@ a:hover { text-decoration: underline; }
 .blog-index-card__date {
   color: var(--muted);
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .blog-index-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-left: 10px;
   padding: 2px 8px;
   border-radius: 999px;
   border: 1px solid var(--border);
   font-size: 12px;
+  font-weight: 700;
   line-height: 1.4;
   white-space: nowrap;
   vertical-align: middle;
 }
 
 .blog-index-badge--wix {
-  color: var(--muted);
-  background: rgba(15, 23, 48, 0.9);
-  border-color: rgba(122, 162, 255, 0.22);
+  color: var(--link);
+  background: rgba(122, 162, 255, 0.10);
+  border-color: rgba(122, 162, 255, 0.35);
 }
 
 .blog-index-card__title {
