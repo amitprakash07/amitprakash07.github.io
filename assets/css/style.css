@@ -111,21 +111,26 @@ a:hover { text-decoration: underline; }
 .blog-index-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
+  grid-template-areas: "main side";
   gap: 22px;
   align-items: start;
 }
 
 .blog-index-sections {
+  grid-area: main;
   display: flex;
   flex-direction: column;
   gap: clamp(2rem, 4vw, 3rem);
   margin-top: 8px;
+  min-width: 0;
 }
 
 .blog-index-sidebar {
+  grid-area: side;
   position: sticky;
   top: 88px; /* below site header */
   align-self: start;
+  min-width: 0;
 }
 
 .blog-index-sidebar__card {
@@ -415,11 +420,13 @@ a:hover { text-decoration: underline; }
 
   .blog-index-layout {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "side"
+      "main";
     gap: 18px;
   }
 
   .blog-index-sidebar {
     position: static;
-    order: -1;
   }
 }
