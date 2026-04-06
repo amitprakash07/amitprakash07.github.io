@@ -3,14 +3,26 @@ layout: page
 title: Blog
 ---
 
-Posts live under `_posts/game-engineering/`, `_posts/game-projects/`, etc. URLs look like `/blogs/game-engineering/YYYY/MM/DD/slug/` (the first path segment matches that folder name).
+<p class="blog-index-lede">Posts are grouped by coursework track. Each block matches a folder under <code>_posts/</code> and the same segment in the URL (for example <code>/blogs/game-engineering/…</code>). Add a row in <code>_data/blog_sections.yml</code> and a matching <code>_posts/your-slug/</code> folder when you start a new track.</p>
 
-{% for post in site.posts %}
-<div class="card" style="margin: 12px 0;">
-  <div style="color: var(--muted); font-size: 14px;">{{ post.date | date: "%b %d, %Y" }}</div>
-  <div style="font-size: 18px; font-weight: 650;"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-  {%- if post.excerpt -%}
-    <div style="margin-top: 6px; color: var(--muted);">{{ post.excerpt | strip_html | truncate: 180 }}</div>
-  {%- endif -%}
+<div class="blog-index-sections">
+  {% for section in site.data.blog_sections %}
+  {% assign url_marker = '/' | append: section.slug | append: '/' %}
+  <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
+    <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
+    <div class="blog-index-card-grid">
+      {% for post in site.posts %}
+        {% if post.url contains url_marker %}
+        <article class="card blog-index-card">
+          <div class="blog-index-card__date">{{ post.date | date: "%b %d, %Y" }}</div>
+          <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+          {%- if post.excerpt -%}
+          <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+          {%- endif -%}
+        </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
 </div>
-{% endfor %}

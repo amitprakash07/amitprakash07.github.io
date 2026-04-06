@@ -1,0 +1,8 @@
+# Blog index: one entry per _posts/<slug>/ folder (matches permalink /blogs/<slug>/…).
+# Order here = order on the page. Comment out or remove a block until that folder has posts.
+- slug: game-engineering
+  title: Game engine coursework
+- slug: game-projects
+  title: Project coursework
+# - slug: computer-graphics
+#   title: Computer graphics coursework
