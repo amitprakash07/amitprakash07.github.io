@@ -9,7 +9,8 @@ tags:
   - camera
   - blueprint
   - coursework
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/04/01/through-the-lens"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/04/01/through-the-lens"
+redirect_to_wix: true
 ---
 
 Through the Lens(War Journalist) is the game idea chosen by the faculty to prototype until the Industry Panel day. Throught the Lens is the mix of two game ideas.

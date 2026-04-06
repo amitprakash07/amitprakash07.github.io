@@ -7,6 +7,7 @@ tags:
   - analytics
   - game-development
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/11/07/analysis-system"
+redirect_to_wix: true
 ---
 
 This is an analysis system which I created to analyse the tenure of the played game by the various users.  It's on its own is a small analytics system. This system only creates the game process and captures the start time of the game. As it holds the process for the game, it can easily capture the end time of the game.

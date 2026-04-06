@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/lua-integration-with-c"
+redirect_to_wix: true
 ---
 ## Lua Integration with C++, OpenGL and DirectX Difference
 

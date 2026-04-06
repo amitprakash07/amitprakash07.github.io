@@ -8,7 +8,8 @@ tags:
   - electromagnetism
   - flemings-rule
   - coursework
-source_wix: "https://amitprakash07.wixsite.com/home/post/2014/12/09/conduit-electromag"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2014/12/09/conduit-electromag"
+redirect_to_wix: true
 ---
 
 This was the last prototype and all were excited to give their best in it. There was subtle change in this prototype; we were allowed to choose our team members and we come up with this team. 

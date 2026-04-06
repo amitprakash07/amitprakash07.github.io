@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/pishaders"
+redirect_to_wix: true
 ---
 ## More Platform Independent Refactoring
 

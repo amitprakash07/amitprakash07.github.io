@@ -10,6 +10,7 @@ tags:
   - halau
   - editor-workflow
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/13/halau-information-system"
+redirect_to_wix: true
 ---
 
 Halau, is a small system giving information about the various Gods which can be seen by the players/user upon some event (yet to be defined). This was little unconventional for me to work on it as I never worked with UI system of Unity. Although, Unity UI system is very easy to use, I had to spend some hours to learn especially about placement of the anchors and pivots for UI objets.  

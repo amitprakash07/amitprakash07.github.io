@@ -8,6 +8,7 @@ tags:
   - unity
   - game-development
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/10/11/circular-ai-bhavior"
+redirect_to_wix: true
 ---
 
 Initially, I created  a basic wandering behavior for the NPCs in the game. But with the new changes in the game design and requirement, it was needed to changed it to Circular AI. Previous AI needs to be completely changed for this behavior. This was fun work as I used old school, did evrything froms scratch - spherical mathematics (more preccisely circular mathematics). I used wayPoint to get the radius for the behavior. Below is the behavior.

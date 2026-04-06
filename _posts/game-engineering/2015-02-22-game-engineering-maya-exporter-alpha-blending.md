@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/mayaexporterplugin"
+redirect_to_wix: true
 ---
 ## Maya Exporter and Alpha Blending
 

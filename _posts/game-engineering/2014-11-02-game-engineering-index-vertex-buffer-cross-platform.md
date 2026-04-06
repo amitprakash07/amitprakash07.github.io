@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/meshcreation"
+redirect_to_wix: true
 ---
 ## Index/Vertex Buffer and Cross - Platform Implementation
 

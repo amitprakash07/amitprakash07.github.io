@@ -8,7 +8,8 @@ tags:
   - pitch
   - war-journalist
   - coursework
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/02/26/thesis-game-selection"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/02/26/thesis-game-selection"
+redirect_to_wix: true
 ---
 
 The beginning of the semester started with thesis game idea. All of the students told to come up with the idea either individually or with the team. Among all the game ideas, faculty were to choose some of them after judging the pitches of the game. I came up with game based on Social Attitude - "The Uncertain". The idea was to design and develop game levels based on the player social attitude.   

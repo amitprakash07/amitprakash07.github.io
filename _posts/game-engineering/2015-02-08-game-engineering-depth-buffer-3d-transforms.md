@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/3d"
+redirect_to_wix: true
 ---
 Adding Depth -Buffer
 

@@ -11,6 +11,7 @@ tags:
   - thesis
   - hawaii
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/01/no-more-ochre-its-maui"
+redirect_to_wix: true
 ---
 
 Ochre was the game which we were building from the second semester of the class. The novel game idea was to deliver a cultural narration using some unique mechanics. The unique mechanics of the game was to give an experience of augmented reality along with the narration.  

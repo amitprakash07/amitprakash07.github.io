@@ -9,7 +9,8 @@ tags:
   - nvidia
   - vxgi
   - game-industry
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/13/gdc-experience"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/13/gdc-experience"
+redirect_to_wix: true
 ---
 
 ![GDC 2015]({{ '/assets/img/blog/2015/gdc-experience/gdc-2015-banner.jpg' | relative_url }})

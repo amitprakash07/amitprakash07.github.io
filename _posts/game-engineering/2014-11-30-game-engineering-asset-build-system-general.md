@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/robust-asset-build-system"
+redirect_to_wix: true
 ---
 ## Asset Build System - More General way for Building Assets
 

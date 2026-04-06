@@ -8,7 +8,8 @@ tags:
   - ai
   - game-development
   - csharp
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/06/chasing-is-fun-basic-ai"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/06/chasing-is-fun-basic-ai"
+redirect_to_wix: true
 ---
 
 Chasing the player is very common in most of the Games - especially RPG games. The basic idea of the Chasing AI is to chase the particular character when it comes in radius of the character who's reponsiblity is to chase and damage the player. This could be the basic AI for AI system. This was my first task in this semester to implement it.  

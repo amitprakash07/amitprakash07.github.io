@@ -9,7 +9,8 @@ tags:
   - ebola
   - unity
   - coursework
-source_wix: "https://amitprakash07.wixsite.com/home/post/2014/11/04/ebola-training-centre-by-team-croindia"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2014/11/04/ebola-training-centre-by-team-croindia"
+redirect_to_wix: true
 ---
 
 This was our third prototype after Fall Break. In this prototype, we have been asked to design a serious games. Serious games are games which are meant to help people in interactive way (via the way of fun). Help could be expedite the learning process of a student or it could be helping patients to recover from a disability. We also have to come up with something like that. In this prototype, we have been asked to use design box for coming up with the idea. Our team did the brainstorm session of it to come up with the idea of making game to show the problem pertaining to training center at Ebola camps. Initially our motto was to make the game to help the aid workers to understand the procedure at training centers. 

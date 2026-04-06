@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/meshbuilder"
+redirect_to_wix: true
 ---
 ## Mesh Builder - creating assets in Binary format
 

@@ -9,7 +9,8 @@ tags:
   - google-usb-driver
   - android-sdk
   - windows
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/08/installing-android-device-driveradb-interface-driver-on-windows"
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/08/installing-android-device-driveradb-interface-driver-on-windows"
+redirect_to_wix: true
 ---
 
 **Android Debug Bridge (ADB)** is part of the Android SDK and is used for many common device and debugging tasks. Sometimes, even after installing the SDK, `adb` does not work until **drivers** and **PATH** are set correctly.

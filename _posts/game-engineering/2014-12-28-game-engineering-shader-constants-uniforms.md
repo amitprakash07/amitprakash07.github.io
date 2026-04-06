@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/shaderconstants"
+redirect_to_wix: true
 ---
 ## Shader Constants - Passing additional Data to the Shaders
 

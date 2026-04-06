@@ -7,6 +7,7 @@ tags:
   - graphics
   - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/shadereffectbuilder"
+redirect_to_wix: true
 ---
 ## Shader Builder and Effect Builder
 
