@@ -161,6 +161,13 @@ a:hover { text-decoration: underline; }
   background: rgba(122, 162, 255, 0.10);
 }
 
+.blog-index-sidebar__link.is-active,
+.blog-index-sidebar__link[aria-current="true"] {
+  border-color: rgba(122, 162, 255, 0.55);
+  background: rgba(122, 162, 255, 0.14);
+  color: var(--link);
+}
+
 .blog-index-section {
   margin: 0;
   padding: 0 0 clamp(1.75rem, 3vw, 2.5rem);

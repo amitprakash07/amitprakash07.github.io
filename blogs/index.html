@@ -46,7 +46,7 @@ title: Blog
         <ul class="blog-index-sidebar__list">
           {% for section in non_empty_sections %}
           <li class="blog-index-sidebar__item">
-            <a class="blog-index-sidebar__link" href="#blog-{{ section.slug }}">{{ section.title }}</a>
+            <a class="blog-index-sidebar__link" href="#blog-{{ section.slug }}" data-section-id="blog-{{ section.slug }}">{{ section.title }}</a>
           </li>
           {% endfor %}
         </ul>
@@ -54,3 +54,47 @@ title: Blog
     </div>
   </aside>
 </div>
+
+<script>
+  (function () {
+    const links = Array.from(document.querySelectorAll('.blog-index-sidebar__link[data-section-id]'));
+    const sections = links
+      .map((a) => document.getElementById(a.dataset.sectionId))
+      .filter(Boolean);
+
+    if (links.length === 0 || sections.length === 0) return;
+
+    function setActive(id) {
+      for (const a of links) {
+        const isActive = a.dataset.sectionId === id;
+        a.classList.toggle('is-active', isActive);
+        if (isActive) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      }
+    }
+
+    // Default: first section
+    setActive(sections[0].id);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        // Find the top-most visible section (closest to top)
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+        if (visible.length > 0) {
+          setActive(visible[0].target.id);
+        }
+      },
+      {
+        root: null,
+        // Treat a section as "active" when its heading is near the top third
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: [0, 1.0],
+      }
+    );
+
+    for (const s of sections) io.observe(s);
+  })();
+</script>
