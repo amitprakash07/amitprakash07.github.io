@@ -18,12 +18,26 @@ defaults:
       path: "toastmasters"
     values:
       layout: page
-  # :categories = folder under _posts/ (e.g. game-engineering, game-projects). Posts only — do not set this as a global permalink or normal pages (e.g. blogs/index) break.
+  # Posts:
+  # - We set `permalink` only for posts (never globally), otherwise normal pages like `/blogs/` break.
+  # - `:categories` comes from the post's `categories` value (not the folder name), so we set categories via folder-scoped defaults below.
   - scope:
       type: "posts"
     values:
       layout: post
       permalink: /blogs/:categories/:year/:month/:day/:title/
+  - scope:
+      path: "_posts/game-engineering"
+      type: "posts"
+    values:
+      categories:
+        - game-engineering
+  - scope:
+      path: "_posts/game-projects"
+      type: "posts"
+    values:
+      categories:
+        - game-projects
 
 exclude:
   - README.md
