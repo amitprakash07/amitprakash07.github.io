@@ -5,29 +5,52 @@ title: Blog
 
 <p class="blog-index-lede">Posts are grouped by coursework track. Each block matches a folder under <code>_posts/</code> and the same segment in the URL (for example <code>/blogs/game-engineering/…</code>). Add a row in <code>_data/blog_sections.yml</code> and a matching <code>_posts/your-slug/</code> folder when you start a new track.</p>
 
-<div class="blog-index-sections">
-  {% for section in site.data.blog_sections %}
+{% assign non_empty_sections = "" | split: "" %}
+{% for section in site.data.blog_sections %}
   {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
   {% if section_posts.size > 0 %}
-  <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
-    <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
-    <div class="blog-index-card-grid">
-      {% for post in section_posts %}
-        <article class="card blog-index-card">
-          <div class="blog-index-card__date">
-            {{ post.date | date: "%b %d, %Y" }}
-            {%- if post.redirect_to_wix and post.source_wix -%}
-              <span class="blog-index-badge blog-index-badge--wix" title="Opens the archived Wix version">Wix archive</span>
-            {%- endif -%}
-          </div>
-          <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-          {% if post.excerpt %}
-          <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
-          {% endif %}
-        </article>
-      {% endfor %}
-    </div>
-  </section>
+    {% assign non_empty_sections = non_empty_sections | push: section %}
   {% endif %}
-  {% endfor %}
+{% endfor %}
+
+<div class="blog-index-layout">
+  <div class="blog-index-sections">
+    {% for section in non_empty_sections %}
+    {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
+    <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
+      <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
+      <div class="blog-index-card-grid">
+        {% for post in section_posts %}
+          <article class="card blog-index-card">
+            <div class="blog-index-card__date">
+              {{ post.date | date: "%b %d, %Y" }}
+              {%- if post.redirect_to_wix and post.source_wix -%}
+                <span class="blog-index-badge blog-index-badge--wix" title="Opens the archived Wix version">Wix archive</span>
+              {%- endif -%}
+            </div>
+            <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+            {% if post.excerpt %}
+            <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endfor %}
+  </div>
+
+  <aside class="blog-index-sidebar" aria-label="Categories">
+    <div class="card blog-index-sidebar__card">
+      <div class="blog-index-sidebar__title">Categories</div>
+      <nav class="blog-index-sidebar__nav">
+        <ul class="blog-index-sidebar__list">
+          {% for section in non_empty_sections %}
+          <li class="blog-index-sidebar__item">
+            <a class="blog-index-sidebar__link" href="#blog-{{ section.slug }}">{{ section.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </aside>
 </div>
