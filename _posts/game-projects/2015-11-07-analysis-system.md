@@ -6,6 +6,7 @@ tags:
   - unity
   - analytics
   - game-development
+  - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/11/07/analysis-system"
 redirect_to_wix: true
 ---

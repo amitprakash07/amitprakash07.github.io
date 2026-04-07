@@ -7,7 +7,8 @@ tags:
   - unity
   - ui
   - game-development
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/25/halau-extended"
+  - coursework
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/25/halau-extended"
 redirect_to_wix: true
 ---
 

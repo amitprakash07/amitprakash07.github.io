@@ -8,7 +8,8 @@ tags:
   - ai
   - game-development
   - csharp
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/06/chasing-is-fun-basic-ai"
+  - coursework
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/06/chasing-is-fun-basic-ai"
 redirect_to_wix: true
 ---
 

@@ -9,7 +9,8 @@ tags:
   - nvidia
   - vxgi
   - game-industry
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/13/gdc-experience"
+  - coursework
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/13/gdc-experience"
 redirect_to_wix: true
 ---
 

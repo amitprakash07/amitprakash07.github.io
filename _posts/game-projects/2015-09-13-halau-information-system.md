@@ -9,6 +9,7 @@ tags:
   - tools
   - halau
   - editor-workflow
+  - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/13/halau-information-system"
 redirect_to_wix: true
 ---

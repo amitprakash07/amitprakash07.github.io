@@ -10,6 +10,7 @@ tags:
   - unity
   - thesis
   - hawaii
+  - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/09/01/no-more-ochre-its-maui"
 redirect_to_wix: true
 ---

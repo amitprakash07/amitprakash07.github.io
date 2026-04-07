@@ -9,7 +9,8 @@ tags:
   - google-usb-driver
   - android-sdk
   - windows
-source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/08/installing-android-device-driveradb-interface-driver-on-windows"
+  - coursework
+source_wix: "https://amitprakash07.wixsite.com/home/post/2015/03/08/installing-android-device-driveradb-interface-driver-on-windows"
 redirect_to_wix: true
 ---
 

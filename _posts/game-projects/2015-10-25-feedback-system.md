@@ -7,6 +7,7 @@ tags:
   - smtp
   - feedback
   - game-development
+  - coursework
 source_wix: "https://amitprakash07.wixsite.com/home/post/2015/10/25/feedback-system"
 redirect_to_wix: true
 ---
