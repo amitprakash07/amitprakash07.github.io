@@ -267,6 +267,15 @@ a:hover { text-decoration: underline; }
   min-height: 0;
 }
 
+.blog-index-card__track {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .blog-index-card__date {
   color: var(--muted);
   font-size: 14px;
@@ -294,6 +303,12 @@ a:hover { text-decoration: underline; }
   color: var(--link);
   background: rgba(122, 162, 255, 0.10);
   border-color: rgba(122, 162, 255, 0.35);
+}
+
+.blog-index-badge--coursework {
+  color: rgba(212, 255, 184, 0.95);
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
 }
 
 .blog-index-card__title {
