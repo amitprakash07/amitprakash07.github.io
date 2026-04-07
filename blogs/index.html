@@ -47,7 +47,6 @@ title: Blog
                 <span class="blog-index-badge blog-index-badge--coursework" title="Coursework write-up">Coursework</span>
               {%- endif -%}
             </div>
-            <div class="blog-index-card__track">{{ section.title }} coursework</div>
             <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
             {% if post.excerpt %}
             <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>

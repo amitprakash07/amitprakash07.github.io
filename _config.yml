@@ -46,6 +46,12 @@ defaults:
         - computer-graphics
         - cpu-rasterizer
   - scope:
+      path: "_posts/computer-graphics"
+      type: "posts"
+    values:
+      categories:
+        - computer-graphics
+  - scope:
       path: "_posts/ray-tracing"
       type: "posts"
     values:
