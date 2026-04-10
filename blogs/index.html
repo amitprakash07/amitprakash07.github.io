@@ -3,88 +3,135 @@ layout: page
 title: Blog
 ---
 
-<p class="blog-index-lede">Posts are grouped by coursework track. Each block matches a folder under <code>_posts/</code> and the same segment in the URL (for example <code>/blogs/game-engineering/…</code>). Add a row in <code>_data/blog_sections.yml</code> and a matching <code>_posts/your-slug/</code> folder when you start a new track.</p>
+<p class="blog-index-lede">Posts are grouped by <strong>year</strong> (newest first), then by topic. Each topic row matches a slug in <code>_data/blog_sections.yml</code>—the <strong>first</strong> matching slug wins, so personal posts that also carry <code>computer-graphics</code> stay under <em>Personal projects</em>. Coursework-era tracks stay grouped under their original topics.</p>
 
-{% assign non_empty_sections = "" | split: "" %}
-{% for section in site.data.blog_sections %}
-  {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
-  {% if section_posts.size > 0 %}
-    {% assign non_empty_sections = non_empty_sections | push: section %}
-  {% endif %}
+{% comment %} Unique years, newest first {% endcomment %}
+{% assign years_unique = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign y = post.date | date: "%Y" %}
+  {% unless years_unique contains y %}
+    {% assign years_unique = years_unique | push: y %}
+  {% endunless %}
 {% endfor %}
+{% assign years_desc = years_unique | sort | reverse %}
 
 <div class="blog-index-layout">
   <div class="blog-index-sections">
-    {% for section in non_empty_sections %}
-    {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
-    {% assign section_years_unique = "" | split: "" %}
-    {% for p in section_posts %}
-      {% assign y = p.date | date: "%Y" %}
-      {% unless section_years_unique contains y %}
-        {% assign section_years_unique = section_years_unique | push: y %}
-      {% endunless %}
-    {% endfor %}
-    {% assign section_years_desc = section_years_unique | sort | reverse %}
-    {% assign section_year_anchor_done = "" | split: "" %}
-    <section class="blog-index-section" aria-labelledby="blog-{{ section.slug }}">
-      <h2 id="blog-{{ section.slug }}" class="blog-index-heading">{{ section.title }}</h2>
-      <div class="blog-index-card-grid">
-        {% for post in section_posts %}
-          {% assign post_year = post.date | date: "%Y" %}
-          {% unless section_year_anchor_done contains post_year %}
-          <div id="blog-{{ section.slug }}-year-{{ post_year }}" class="blog-index-year-divider" tabindex="-1">
-            <span class="blog-index-year-divider__label">{{ post_year }}</span>
-          </div>
-          {% assign section_year_anchor_done = section_year_anchor_done | push: post_year %}
-          {% endunless %}
-          <article class="card blog-index-card">
-            <div class="blog-index-card__date">
-              {{ post.date | date: "%b %d, %Y" }}
-              {%- if post.redirect_to_wix and post.source_wix -%}
-                <span class="blog-index-badge blog-index-badge--wix" title="Opens the archived Wix version">Wix archive</span>
-              {%- endif -%}
-              {%- if post.tags contains "coursework" -%}
-                <span class="blog-index-badge blog-index-badge--coursework" title="Coursework write-up">Coursework</span>
-              {%- endif -%}
-            </div>
-            <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
-            {% if post.excerpt %}
-            <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+    {% for year in years_desc %}
+      {% assign year_has_any = false %}
+      {% for post in site.posts %}
+        {% assign py = post.date | date: "%Y" %}
+        {% if py == year %}
+          {% assign year_has_any = true %}
+        {% endif %}
+      {% endfor %}
+      {% if year_has_any %}
+      <section class="blog-index-year-block" id="blog-year-{{ year }}" aria-labelledby="blog-year-heading-{{ year }}">
+        <h2 id="blog-year-heading-{{ year }}" class="blog-index-year-heading">{{ year }}</h2>
+
+        {% for section in site.data.blog_sections %}
+          {% assign subsection_has_posts = false %}
+          {% for post in site.posts %}
+            {% assign py = post.date | date: "%Y" %}
+            {% if py == year and post.categories contains section.slug %}
+              {% assign primary_slug = "" %}
+              {% for sec2 in site.data.blog_sections %}
+                {% if primary_slug == "" and post.categories contains sec2.slug %}
+                  {% assign primary_slug = sec2.slug %}
+                {% endif %}
+              {% endfor %}
+              {% if primary_slug == section.slug %}
+                {% assign subsection_has_posts = true %}
+              {% endif %}
             {% endif %}
-          </article>
+          {% endfor %}
+
+          {% if subsection_has_posts %}
+            <div class="blog-index-subsection" id="blog-sub-{{ year }}-{{ section.slug }}">
+              <h3 class="blog-index-subsection-heading" id="blog-{{ year }}-{{ section.slug }}">{{ section.title }}</h3>
+              <div class="blog-index-card-grid">
+                {% for post in site.posts %}
+                  {% assign py = post.date | date: "%Y" %}
+                  {% if py == year %}
+                    {% assign primary_slug = "" %}
+                    {% for sec2 in site.data.blog_sections %}
+                      {% if primary_slug == "" and post.categories contains sec2.slug %}
+                        {% assign primary_slug = sec2.slug %}
+                      {% endif %}
+                    {% endfor %}
+                    {% if primary_slug == section.slug %}
+                      <article class="card blog-index-card">
+                        <div class="blog-index-card__date">
+                          {{ post.date | date: "%b %d, %Y" }}
+                          {%- if post.redirect_to_wix and post.source_wix -%}
+                            <span class="blog-index-badge blog-index-badge--wix" title="Opens the archived Wix version">Wix archive</span>
+                          {%- endif -%}
+                          {%- if post.tags contains "coursework" -%}
+                            <span class="blog-index-badge blog-index-badge--coursework" title="Coursework write-up">Coursework</span>
+                          {%- endif -%}
+                          {%- if post.tags contains "personal-project" -%}
+                            <span class="blog-index-badge blog-index-badge--personal" title="Personal project">Personal</span>
+                          {%- endif -%}
+                        </div>
+                        <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+                        {% if post.excerpt %}
+                        <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+                        {% endif %}
+                      </article>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endif %}
         {% endfor %}
-      </div>
-    </section>
+      </section>
+      {% endif %}
     {% endfor %}
   </div>
 
   <aside class="blog-index-sidebar" aria-label="Blog navigation">
     <div class="card blog-index-sidebar__card">
       <div class="blog-index-sidebar__title">Browse</div>
-      <nav class="blog-index-sidebar__nav" aria-label="By category and year">
+      <nav class="blog-index-sidebar__nav" aria-label="By year and topic">
         <ul class="blog-index-sidebar__list">
-          {% for section in non_empty_sections %}
-          {% assign section_posts = site.posts | where_exp: "p", "p.categories contains section.slug" %}
-          {% assign section_years_unique = "" | split: "" %}
-          {% for p in section_posts %}
-            {% assign y = p.date | date: "%Y" %}
-            {% unless section_years_unique contains y %}
-              {% assign section_years_unique = section_years_unique | push: y %}
-            {% endunless %}
-          {% endfor %}
-          {% assign section_years_desc = section_years_unique | sort | reverse %}
-          <li class="blog-index-sidebar__item">
-            <a class="blog-index-sidebar__link" href="#blog-{{ section.slug }}" data-section-id="blog-{{ section.slug }}">{{ section.title }}</a>
-            {% if section_years_desc.size > 0 %}
-            <ul class="blog-index-sidebar__sublist" aria-label="{{ section.title }} years">
-              {% for y in section_years_desc %}
-              <li class="blog-index-sidebar__subitem">
-                <a class="blog-index-sidebar__sublink" href="#blog-{{ section.slug }}-year-{{ y }}">{{ y }}</a>
-              </li>
-              {% endfor %}
-            </ul>
+          {% for year in years_desc %}
+            {% assign year_has_any = false %}
+            {% for post in site.posts %}
+              {% assign py = post.date | date: "%Y" %}
+              {% if py == year %}
+                {% assign year_has_any = true %}
+              {% endif %}
+            {% endfor %}
+            {% if year_has_any %}
+            <li class="blog-index-sidebar__item">
+              <a class="blog-index-sidebar__link" href="#blog-year-{{ year }}" data-year-id="blog-year-{{ year }}">{{ year }}</a>
+              <ul class="blog-index-sidebar__sublist" aria-label="{{ year }} topics">
+                {% for section in site.data.blog_sections %}
+                  {% assign subsection_has_posts = false %}
+                  {% for post in site.posts %}
+                    {% assign py = post.date | date: "%Y" %}
+                    {% if py == year and post.categories contains section.slug %}
+                      {% assign primary_slug = "" %}
+                      {% for sec2 in site.data.blog_sections %}
+                        {% if primary_slug == "" and post.categories contains sec2.slug %}
+                          {% assign primary_slug = sec2.slug %}
+                        {% endif %}
+                      {% endfor %}
+                      {% if primary_slug == section.slug %}
+                        {% assign subsection_has_posts = true %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                  {% if subsection_has_posts %}
+                  <li class="blog-index-sidebar__subitem">
+                    <a class="blog-index-sidebar__sublink" href="#blog-{{ year }}-{{ section.slug }}">{{ section.title }}</a>
+                  </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </li>
             {% endif %}
-          </li>
           {% endfor %}
         </ul>
       </nav>
@@ -94,44 +141,41 @@ title: Blog
 
 <script>
   (function () {
-    const links = Array.from(document.querySelectorAll('.blog-index-sidebar__link[data-section-id]'));
-    const sections = links
-      .map((a) => document.getElementById(a.dataset.sectionId))
+    const yearLinks = Array.from(document.querySelectorAll('.blog-index-sidebar__link[data-year-id]'));
+    const yearBlocks = yearLinks
+      .map((a) => document.getElementById(a.dataset.yearId))
       .filter(Boolean);
 
-    if (links.length === 0 || sections.length === 0) return;
+    if (yearLinks.length === 0 || yearBlocks.length === 0) return;
 
-    function setActive(id) {
-      for (const a of links) {
-        const isActive = a.dataset.sectionId === id;
+    function setActiveYear(id) {
+      for (const a of yearLinks) {
+        const isActive = a.dataset.yearId === id;
         a.classList.toggle('is-active', isActive);
         if (isActive) a.setAttribute('aria-current', 'true');
         else a.removeAttribute('aria-current');
       }
     }
 
-    // Default: first section
-    setActive(sections[0].id);
+    setActiveYear(yearBlocks[0].id);
 
     const io = new IntersectionObserver(
       (entries) => {
-        // Find the top-most visible section (closest to top)
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
 
         if (visible.length > 0) {
-          setActive(visible[0].target.id);
+          setActiveYear(visible[0].target.id);
         }
       },
       {
         root: null,
-        // Treat a section as "active" when its heading is near the top third
-        rootMargin: '-20% 0px -70% 0px',
-        threshold: [0, 1.0],
+        rootMargin: '-18% 0px -65% 0px',
+        threshold: [0, 0.05, 1.0],
       }
     );
 
-    for (const s of sections) io.observe(s);
+    for (const block of yearBlocks) io.observe(block);
   })();
 </script>

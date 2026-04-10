@@ -38,12 +38,14 @@ defaults:
     values:
       categories:
         - game-projects
+  # CPU rasterizer series: original writing (not coursework / Wix archive).
   - scope:
       path: "_posts/computer-graphics/cpu-rasterizer"
       type: "posts"
     values:
       categories:
         - computer-graphics
+        - personal-project
         - cpu-rasterizer
   - scope:
       path: "_posts/computer-graphics"

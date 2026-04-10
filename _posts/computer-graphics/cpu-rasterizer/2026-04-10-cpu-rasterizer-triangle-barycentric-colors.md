@@ -2,9 +2,12 @@
 title: "CPU rasterizer (1): Triangle fill with barycentric coordinates and interpolated colors"
 date: 2026-04-10
 tags:
+  - personal-project
   - computer-graphics
+  - cpu-rasterizer
   - rasterization
   - amit-labs
+  - "2026"
 ---
 
 This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. Later posts will go deeper (depth, textures, and beyond). This one is about the **steps I took** to reach a point where I can **draw a filled triangle** and shade it with **per-vertex colors interpolated using barycentric coordinates**.

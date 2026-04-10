@@ -1,5 +1,7 @@
-# Blog index: one entry per _posts/<slug>/ folder (matches permalink /blogs/<slug>/…).
-# Order here = order on the page. Comment out or remove a block until that folder has posts.
+# Blog index topics (order matters): each post is listed under the *first* slug here that
+# appears in its `categories`. Put personal / current work first so new posts surface clearly.
+- slug: personal-project
+  title: Personal projects
 - slug: game-engineering
   title: Game engine coursework
 - slug: game-projects
