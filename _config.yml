@@ -4,9 +4,13 @@ url: ""
 baseurl: ""
 
 # Append to stylesheet URL so browsers/CDN pick up CSS changes after deploy (bump when you edit style.css).
-assets_css_version: "2"
+assets_css_version: "4"
 
 markdown: kramdown
+
+# Syntax-colored fenced code blocks (```cpp, etc.) — supported on GitHub Pages via Rouge.
+kramdown:
+  syntax_highlighter: rouge
 
 defaults:
   - scope:

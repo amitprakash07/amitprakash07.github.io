@@ -1,7 +1,8 @@
 :root {
-  /* Warm paper-like light theme (readable body + clear code blocks) */
-  --bg: #f7f4ef;
-  --bg-elevated: #fdfcfa;
+  /* Page shell: warm paper; blog posts use --panel (white) for reading */
+  --bg: #f1eae0;
+  --bg-elevated: #faf6ef;
+  --divider: rgba(28, 25, 23, 0.085);
   --panel: #ffffff;
   --text: #1c1917;
   --muted: #57534e;
@@ -32,8 +33,8 @@ body {
   background-image: linear-gradient(
     180deg,
     var(--bg-elevated) 0%,
-    var(--bg) 28%,
-    #f3efe8 100%
+    var(--bg) 32%,
+    #e8e0d4 100%
   );
 }
 
@@ -82,6 +83,23 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .page h1, .post h1 { margin: 0 0 12px; }
 .post__meta { margin: 0; color: var(--muted); }
 
+/* Blog posts: white card on warm page (body stays tinted) */
+article.post {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
+  box-shadow:
+    0 1px 2px rgba(28, 25, 23, 0.05),
+    0 10px 28px rgba(28, 25, 23, 0.07);
+}
+
+.post__header {
+  padding-bottom: 1.15rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--divider);
+}
+
 /* Inline and fenced code (Kramdown): high contrast on warm white */
 .post__content code,
 .page code {
@@ -118,13 +136,69 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   border-radius: 0;
 }
 
+/* Rouge (```lang … ```): one framed block, no double border with plain pre rules */
+.post__content .highlighter-rouge,
+.page .highlighter-rouge,
+.post__content figure.highlighter-rouge,
+.page figure.highlighter-rouge {
+  margin: 1.25rem 0;
+}
+
+.post__content figure.highlighter-rouge,
+.page figure.highlighter-rouge {
+  max-width: 100%;
+}
+
+.post__content .highlighter-rouge .highlight,
+.page .highlighter-rouge .highlight {
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: var(--pre-bg);
+  overflow-x: auto;
+}
+
+.post__content .highlighter-rouge pre,
+.post__content .highlighter-rouge pre.highlight,
+.page .highlighter-rouge pre,
+.page .highlighter-rouge pre.highlight {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: var(--code-text);
+}
+
+/* Consistent section rhythm in long posts (e.g. Step 1, Step 2, …) */
+.post__content h2 {
+  margin-bottom: 0.65rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.post__content h2:not(:first-of-type) {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--divider);
+}
+
+.post__content hr,
+.page hr {
+  border: 0;
+  height: 1px;
+  margin: 2rem 0;
+  background: var(--divider);
+}
+
 .post__content blockquote,
 .page blockquote {
   margin: 1rem 0;
   padding: 0.5rem 0 0.5rem 1rem;
   border-left: 4px solid var(--accent-border);
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--code-bg);
   border-radius: 0 8px 8px 0;
 }
 
@@ -283,7 +357,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   border-radius: 10px;
   border: 1px solid transparent;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--code-bg);
   font-size: 0.92em;
 }
 
@@ -308,7 +382,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 .blog-index-year-block {
   margin: 0 0 clamp(2rem, 4vw, 3rem);
   padding: 0 0 clamp(1.75rem, 3vw, 2.5rem);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--divider);
   scroll-margin-top: 88px;
 }
 
@@ -339,7 +413,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   font-weight: 650;
   margin: 0 0 0.85rem;
   padding-bottom: 0.45rem;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--divider);
   color: var(--muted);
   letter-spacing: 0.02em;
   scroll-margin-top: 96px;
@@ -350,7 +424,7 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
   font-weight: 650;
   margin: 0 0 1.1rem;
   padding-bottom: 0.65rem;
-  border-bottom: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--divider);
   color: var(--text);
   letter-spacing: 0.02em;
   scroll-margin-top: 96px;

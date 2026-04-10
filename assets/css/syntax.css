@@ -1,0 +1,111 @@
+/* Rouge syntax highlighting — warm light palette (C++ and common tokens) */
+/* Loaded after style.css; uses site :root variables where helpful */
+
+.highlight .w,
+.highlight .err {
+  color: var(--code-text, #292524);
+}
+
+/* Comments */
+.highlight .c,
+.highlight .ch,
+.highlight .cm,
+.highlight .cp,
+.highlight .cpf,
+.highlight .c1,
+.highlight .cs {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Keywords (if, return, struct, …) */
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt {
+  color: #a16207;
+  font-weight: 600;
+}
+
+/* Types / built-ins often tagged as kt or nc in C++ */
+.highlight .nc,
+.highlight .nl {
+  color: #6d28d9;
+  font-weight: 600;
+}
+
+/* Function names */
+.highlight .nf,
+.highlight .fm {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+/* Literals & numbers */
+.highlight .m,
+.highlight .mb,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .il {
+  color: #047857;
+}
+
+/* Strings & chars */
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .ss {
+  color: #b91c1c;
+}
+
+/* Names, params */
+.highlight .n,
+.highlight .na,
+.highlight .nx {
+  color: var(--code-text, #292524);
+}
+
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+  color: #0f766e;
+}
+
+/* Operators & punctuation */
+.highlight .o,
+.highlight .p {
+  color: #57534e;
+}
+
+.highlight .bp,
+.highlight .nb {
+  color: #7c3aed;
+}
+
+/* Preprocessor */
+.highlight .cp,
+.highlight .cpf {
+  color: #9a3412;
+  font-weight: 500;
+}
+
+/* Diff / misc */
+.highlight .gd { color: #b91c1c; }
+.highlight .gi { color: #047857; }
+.highlight .go { color: #6b7280; }
+.highlight .gu { color: #57534e; }
+.highlight .gt { color: #b91c1c; }
