@@ -3,6 +3,9 @@ description: Portfolio, blog, and notes
 url: ""
 baseurl: ""
 
+# Append to stylesheet URL so browsers/CDN pick up CSS changes after deploy (bump when you edit style.css).
+assets_css_version: "2"
+
 markdown: kramdown
 
 defaults:
