@@ -3,8 +3,6 @@ layout: page
 title: Blog
 ---
 
-<p class="blog-index-lede">Posts are grouped by <strong>year</strong> (newest first), then by topic. Each topic row matches a slug in <code>_data/blog_sections.yml</code>—the <strong>first</strong> matching slug wins, so personal posts that also carry <code>computer-graphics</code> stay under <em>Personal projects</em>. Coursework-era tracks stay grouped under their original topics.</p>
-
 {% comment %} Unique years, newest first {% endcomment %}
 {% assign years_unique = "" | split: "" %}
 {% for post in site.posts %}

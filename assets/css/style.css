@@ -253,24 +253,7 @@ article.post {
   box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04), 0 4px 12px rgba(28, 25, 23, 0.04);
 }
 
-/* Blog index: stacked sections (scales to many categories); cards use a responsive grid */
-.blog-index-lede {
-  margin: 0 0 20px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  max-width: 72ch;
-}
-
-.blog-index-lede code {
-  font-size: 0.88em;
-  color: var(--code-text);
-  background: var(--code-bg);
-  padding: 2px 6px;
-  border-radius: 6px;
-  border: 1px solid var(--code-border);
-}
-
+/* Blog index */
 .blog-index-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 260px;
@@ -570,27 +553,32 @@ article.post {
 .home-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 20px 0 14px;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 1.1rem 0 12px;
 }
 
+/* Compact text-style quick links (not large pill buttons) */
 .home-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--accent-border-strong);
-  background: var(--accent-tint);
-  color: var(--link);
-  font-weight: 600;
+  padding: 4px 10px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
 }
 
 .home-button:hover {
   text-decoration: none;
-  background: var(--accent-tint-hover);
-  color: var(--link-hover);
+  border-color: var(--border-strong);
+  background: var(--code-bg);
+  color: var(--link);
 }
 
 .home-links {
