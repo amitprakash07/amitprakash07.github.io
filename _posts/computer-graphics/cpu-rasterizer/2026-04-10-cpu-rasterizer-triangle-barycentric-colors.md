@@ -1,16 +1,14 @@
 ---
-
-## title: "CPU rasterizer (1): Triangle fill with barycentric coordinates and interpolated colors"
-
+title: "CPU rasterizer (1): Triangle fill with barycentric coordinates and interpolated colors"
 date: 2026-04-10
 tags:
-
-- personal-project
-- computer-graphics
-- cpu-rasterizer
-- rasterization
-- amit-labs
-- "2026"
+  - personal-project
+  - computer-graphics
+  - cpu-rasterizer
+  - rasterization
+  - amit-labs
+  - "2026"
+---
 
 This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. Later posts will go deeper (depth, textures, and beyond). This one is about the **steps I took** to reach a point where I can **draw a filled triangle** and shade it with **per-vertex colors interpolated using barycentric coordinates**.
 
@@ -42,7 +40,7 @@ void DrawTriangleOutline(int32_t x0, int32_t y0,
 }
 ```
 
-![Step 1 — triangle drawn as three edges (wireframe)]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/01-triangle-edges.png' | relative_url }})
+![Step 1 — triangle drawn as three edges (wireframe)]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/01_triangle_edges.jpg' | relative_url }})
 
 ## Step 2 — Bresenham line drawing
 
@@ -69,7 +67,7 @@ void DrawLineBresenham(int32_t x1, int32_t y1, int32_t x2, int32_t y2, auto&& pl
 }
 ```
 
-![Step 2 — lines via Bresenham]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/02-bresenham-lines.png' | relative_url }})
+![Step 2 — lines via Bresenham]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/01_triangle_edges.jpg' | relative_url }})
 
 ## Step 3 — Edge function (Orient2D)
 
@@ -100,7 +98,7 @@ float Orient2D(float ax, float ay, float bx, float by, float px, float py) {
 }
 ```
 
-![Step 3 — edge function / orient2d intuition]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/03-edge-function.png' | relative_url }})
+![Step 3 — edge function / orient2d intuition]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/02_triangle_filled.jpg' | relative_url }})
 
 ## Step 4 — Bounding box and inside test
 
@@ -134,7 +132,7 @@ void RasterizeTriangleFill(const Point2& v0, const Point2& v1, const Point2& v2,
 }
 ```
 
-![Step 4 — bounding box scan and inside test]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/04-bounding-box-inside.png' | relative_url }})
+![Step 4 — bounding box scan and inside test]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/03_triangle_filled_with_bounding_box.jpg' | relative_url }})
 
 ## Step 5 — Barycentric coordinates
 
@@ -165,7 +163,7 @@ Barycentric ComputeBarycentric(const Point2& v0, const Point2& v1, const Point2&
 }
 ```
 
-![Step 5 — barycentric weights visualized]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05-barycentric-coordinates.png' | relative_url }})
+![Step 5 — barycentric weights visualized]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/04_barycentric_interpolated.jpg' | relative_url }})
 
 ## Step 6 — Interpolating color
 
@@ -190,7 +188,7 @@ ColorF InterpolateColor(const ColorF& c0, const ColorF& c1, const ColorF& c2,
 }
 ```
 
-![Step 6 — per-vertex colors blended with barycentrics]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/06-color-interpolation.png' | relative_url }})
+![Step 6 — per-vertex colors blended with barycentrics]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05_barycentric_interpolated_with_bounding_box.jpg' | relative_url }})
 
 ## Step 7 — Color representation
 
@@ -214,7 +212,7 @@ Rgb8 FloatToRgb8(const ColorF& c) {
 }
 ```
 
-![Step 7 — float color vs 8-bit framebuffer output]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/07-color-representation.png' | relative_url }})
+![Step 7 — float color vs 8-bit framebuffer output]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05_barycentric_interpolated_with_bounding_box.jpg' | relative_url }})
 
 ## Closing
 
