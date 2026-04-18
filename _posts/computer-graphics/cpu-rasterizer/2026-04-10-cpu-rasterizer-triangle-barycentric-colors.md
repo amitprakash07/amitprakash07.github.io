@@ -10,26 +10,38 @@ tags:
   - "2026"
 ---
 
-This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. Later posts will go deeper (depth, textures, and beyond). This one is about the **steps I took** to reach a point where I can **draw a filled triangle** and shade it with **per-vertex colors interpolated using barycentric coordinates**.
+This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. Later posts will go deeper (depth, textures, and beyond). This one walks three milestones: **wireframe edges**, **inside tests with an edge function and bounding box**, then **barycentric weights for smooth per-vertex colors**.
 
 The C++ below is **illustrative** of each idea; the full wiring lives in the repo under `source/projects/cpu_rasterizer`.
 
 ## Motivation
 
-I wanted to see how a triangle turns into pixels, without leaning on the GPU yet. The path was incremental: from wireframe edges to a correct inside test, then barycentrics, then color interpolation.
+I wanted to see how a triangle turns into shaded pixels without the GPU yet—edges first, then “is this pixel inside?”, then the same signed areas as **barycentric coordinates** for interpolation.
 
 ## Step 1 — Triangle edges
 
-A triangle is three segments:
+A triangle is three segments: Line(v0, v1), Line(v1, v2), Line(v2, v0). Drawing only the edges makes winding and vertex order easy to check before you fill the interior.
 
-- Line(v0, v1)
-- Line(v1, v2)
-- Line(v2, v0)
-
-Drawing only the edges makes orientation and vertex order easy to sanity-check before filling the interior.
+Edges are stepped with an integer **Bresenham** line routine; the outline calls it three times.
 
 ```cpp
-// Wireframe: rasterize each edge (uses the integer Bresenham routine from Step 2).
+#include <cstdint>
+#include <cmath>
+
+void DrawLineBresenham(int32_t x1, int32_t y1, int32_t x2, int32_t y2, auto&& plot) {
+    int32_t dx = std::abs(x2 - x1), dy = std::abs(y2 - y1);
+    int32_t sx = (x1 < x2) ? 1 : -1;
+    int32_t sy = (y1 < y2) ? 1 : -1;
+    int32_t err = dx - dy;
+    for (;;) {
+        plot(x1, y1);
+        if (x1 == x2 && y1 == y2) break;
+        int32_t e2 = 2 * err;
+        if (e2 > -dy) { err -= dy; x1 += sx; }
+        if (e2 < dx)  { err += dx; y1 += sy; }
+    }
+}
+
 void DrawTriangleOutline(int32_t x0, int32_t y0,
                          int32_t x1, int32_t y1,
                          int32_t x2, int32_t y2,
@@ -42,45 +54,15 @@ void DrawTriangleOutline(int32_t x0, int32_t y0,
 
 ![Step 1 — triangle drawn as three edges (wireframe)]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/01_triangle_edges.jpg' | relative_url }})
 
-## Step 2 — Bresenham line drawing
+## Step 2 — Edge function and fill
 
-I used an integer incremental line routine so edge stepping stays stable and cheap compared to naive per-pixel line math.
+For a point P relative to the triangle, signed “areas” come from the **edge function** (orient2d): E0 = Orient2D(v1, v2, P), E1 = Orient2D(v2, v0, P), E2 = Orient2D(v0, v1, P). Together they say which side of each directed edge P lies on. A pixel is **inside** when all three agree with your winding (for example `E0 >= 0 && E1 >= 0 && E2 >= 0`—flip to `<= 0` everywhere if your order is opposite).
 
-```cpp
-#include <cstdint>
-#include <cmath>
-
-// Integer midpoint / Bresenham style (0 ≤ |slope| ≤ 1 case shown; mirror for steep lines.)
-void DrawLineBresenham(int32_t x1, int32_t y1, int32_t x2, int32_t y2, auto&& plot) {
-    int32_t dx = std::abs(x2 - x1), dy = std::abs(y2 - y1);
-    int32_t sx = (x1 < x2) ? 1 : -1;
-    int32_t sy = (y1 < y2) ? 1 : -1;
-    int32_t err = dx - dy;
-
-    for (;;) {
-        plot(x1, y1);
-        if (x1 == x2 && y1 == y2) break;
-        int32_t e2 = 2 * err;
-        if (e2 > -dy) { err -= dy; x1 += sx; }
-        if (e2 < dx)  { err += dx; y1 += sy; }
-    }
-}
-```
-
-![Step 2 — lines via Bresenham]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/01_triangle_edges.jpg' | relative_url }})
-
-## Step 3 — Edge function (Orient2D)
-
-For a point P relative to triangle edges, signed “areas” come from the edge function (orient2d):
-
-- E0 = Orient2D(v1, v2, P)
-- E1 = Orient2D(v2, v0, P)
-- E2 = Orient2D(v0, v1, P)
-
-Together these encode which side of each directed edge P lies on, and set up the same weights used for barycentric coordinates.
+To avoid scanning the whole framebuffer, restrict the double loop to the triangle’s **axis-aligned bounding box**; that is the only change between the two renders below.
 
 ```cpp
-// Implicit line ax + by + c = 0 through (ax,ay) -> (bx,by)
+#include <algorithm>
+
 struct ImplicitLine {
     float a, b, c;
 };
@@ -96,18 +78,6 @@ float Orient2D(ImplicitLine L, float px, float py) {
 float Orient2D(float ax, float ay, float bx, float by, float px, float py) {
     return Orient2D(MakeLine(ax, ay, bx, by), px, py);
 }
-```
-
-![Step 3 — edge function / orient2d intuition]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/02_triangle_filled.jpg' | relative_url }})
-
-## Step 4 — Bounding box and inside test
-
-Scan only pixels in the triangle’s axis-aligned bounding box, and treat P as inside when all edge functions agree with the triangle’s winding (for consistent CCW/CW rules), e.g.:
-
-`if (E0 >= 0 && E1 >= 0 && E2 >= 0)` (adjust signs to match your vertex order).
-
-```cpp
-#include <algorithm>
 
 struct Point2 {
     float x, y;
@@ -125,30 +95,28 @@ void RasterizeTriangleFill(const Point2& v0, const Point2& v1, const Point2& v2,
             float e0 = Orient2D(v1.x, v1.y, v2.x, v2.y, float(x), float(y));
             float e1 = Orient2D(v2.x, v2.y, v0.x, v0.y, float(x), float(y));
             float e2 = Orient2D(v0.x, v0.y, v1.x, v1.y, float(x), float(y));
-            if (e0 >= 0 && e1 >= 0 && e2 >= 0)  // flip to <= 0 everywhere if your winding is opposite
+            if (e0 >= 0 && e1 >= 0 && e2 >= 0)
                 plot_pixel(x, y);
         }
     }
 }
 ```
 
-![Step 4 — bounding box scan and inside test]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/03_triangle_filled_with_bounding_box.jpg' | relative_url }})
+Filled triangle (inside test only):
 
-## Step 5 — Barycentric coordinates
+![Step 2a — filled triangle using edge functions]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/02_triangle_filled.jpg' | relative_url }})
 
-With
+Same fill, with the **bounding box** drawn so the scan region is obvious:
 
-`Area = Orient2D(v0, v1, v2)` (double the triangle area, signed),
+![Step 2b — same fill with bounding box]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/03_triangle_filled_with_bounding_box.jpg' | relative_url }})
 
-the barycentric weights are:
+## Step 3 — Barycentric coordinates and color
 
-- α = E0 / Area  
-- β = E1 / Area  
-- γ = E2 / Area
-
-At any interior pixel, α + β + γ = 1, and each weight tells you how “close” that pixel is to the opposite vertex.
+With `Area = Orient2D(v0, v1, v2)` (twice the signed triangle area), the barycentric weights are α = E0 / Area, β = E1 / Area, γ = E2 / Area. At any interior pixel, α + β + γ = 1. Vertex colors C0, C1, C2 in **[0, 1]** per channel interpolate the same way as any other attribute: **C = αC0 + βC1 + γC2**. Convert to **RGB8** for the framebuffer when you commit pixels.
 
 ```cpp
+#include <algorithm>
+
 struct Barycentric {
     float alpha, beta, gamma;
 };
@@ -161,19 +129,7 @@ Barycentric ComputeBarycentric(const Point2& v0, const Point2& v1, const Point2&
     float e2   = Orient2D(v0.x, v0.y, v1.x, v1.y, px, py);
     return {e0 / area, e1 / area, e2 / area};
 }
-```
 
-![Step 5 — barycentric weights visualized]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/04_barycentric_interpolated.jpg' | relative_url }})
-
-## Step 6 — Interpolating color
-
-Given vertex colors C0, C1, C2 (as floats in [0, 1] per channel), the interpolated color is the same linear combination as any other per-vertex attribute:
-
-**C = αC0 + βC1 + γC2**
-
-That is how the triangle becomes a smooth blend instead of flat fills.
-
-```cpp
 struct ColorF {
     float r, g, b;
 };
@@ -186,17 +142,6 @@ ColorF InterpolateColor(const ColorF& c0, const ColorF& c1, const ColorF& c2,
         w.alpha * c0.b + w.beta * c1.b + w.gamma * c2.b,
     };
 }
-```
-
-![Step 6 — per-vertex colors blended with barycentrics]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05_barycentric_interpolated_with_bounding_box.jpg' | relative_url }})
-
-## Step 7 — Color representation
-
-- **ColorF** — float RGB in [0, 1] for the interpolation math.  
-- **RGB8** — 8-bit channels for writing the framebuffer (e.g. PPM or similar).
-
-```cpp
-#include <algorithm>
 
 struct Rgb8 {
     uint8_t r, g, b;
@@ -212,8 +157,14 @@ Rgb8 FloatToRgb8(const ColorF& c) {
 }
 ```
 
-![Step 7 — float color vs 8-bit framebuffer output]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05_barycentric_interpolated_with_bounding_box.jpg' | relative_url }})
+Interpolated vertex colors (barycentric visualization):
+
+![Step 3a — barycentric interpolation]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/04_barycentric_interpolated.jpg' | relative_url }})
+
+Same shading with the **bounding box** overlaid:
+
+![Step 3b — barycentric interpolation with bounding box]({{ '/assets/img/blog/2026/cpu-rasterizer/01-triangle-barycentric/05_barycentric_interpolated_with_bounding_box.jpg' | relative_url }})
 
 ## Closing
 
-From here the same barycentric weights extend naturally to **depth**, **UVs**, and normals. This post stops where the **first milestone** felt solid: a **filled triangle** with **colors driven by barycentric interpolation**.
+From here the same weights extend naturally to **depth**, **UVs**, and normals. This post stops where the first milestone felt solid: a **filled triangle** with **colors driven by barycentric interpolation**.
