@@ -17,7 +17,7 @@ The implementation lives in the same project as [CPU rasterizer (1): Triangle fi
 ## What we are solving
 
 - After rasterizing geometry, I want a **small, monospace-style readout** in a corner of the framebuffer.
-- The font is **not** OS text rendering in the browser—it is **my own bitmap / glyph blit** into the RGB buffer I already own.
+- The font is **not** OS text rendering in the browser. It is **my own bitmap / glyph blit** into the RGB buffer I already own.
 - The text should become part of the final saved image, so the screenshot carries the same stats I saw while rendering.
 
 Here is one of the framebuffer outputs with the overlay baked in:
