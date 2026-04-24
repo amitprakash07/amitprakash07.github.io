@@ -1,21 +1,15 @@
 ---
 title: "CPU rasterizer (3): C++ type safety, semantic wrappers, and render-state boundaries"
 date: 2026-04-23
+ai_assisted: true
 tags:
-  - personal-project
-  - computer-graphics
-  - cpu-rasterizer
-  - rasterization
-  - cpp
   - software-engineering
-  - type-safety
-  - amit-labs
-  - "2026"
+  - graphics
 ---
 
-This is the **third** post in my **CPU rasterizer** series for [Amit Labs](https://github.com/amitprakash07/amit-labs). Unlike the first two, this one is less about a new rendering feature and more about the **C++ design lessons** that showed up while I was refactoring the rasterizer code: **strong typing**, **semantic wrappers**, **typed initialization**, and **render-state ownership**.
+This is the **third** post in my **CPU rasterizer** series for [Amit Labs](https://github.com/amitprakash07/amit-labs). Unlike the first two, this one is less about a new rendering feature and more about the **C++ design lessons** that came up while I was refactoring the rasterizer code: **strong typing**, **semantic wrappers**, **typed initialization**, and **render-state ownership**.
 
-The trigger was simple: I was working in `Image2D`, and I wanted the constructor to make it hard to accidentally swap **width** and **height**.
+The trigger was simple. I was working in `Image2D`, and I wanted the constructor to make it hard to accidentally swap **width** and **height**.
 
 ## The original problem: `width` and `height` are not the same thing
 
@@ -82,7 +76,7 @@ using Width = SemanticValue<std::uint32_t>;
 using Height = SemanticValue<std::uint32_t>;
 ```
 
-At first this looks elegant, but it quietly loses the safety I wanted.
+At first this looked elegant to me, but it quietly lost the safety I actually wanted.
 
 `Width` and `Height` are now just **two names for the same type**.
 
@@ -113,7 +107,7 @@ For graphics code, this matters more than it first appears. `Width`, `Height`, `
 
 ## Interval design: naming, boundaries, and type-level semantics
 
-Another useful design discussion from the same refactor was about **intervals**. I wanted a reusable type for things like normalized coordinates and viewport-like domains, but the first naming instinct was `Range`, which is not ideal in modern C++ because `std::ranges` already uses that word for iterable sequences.
+Another useful design discussion from the same refactor was about **intervals**. I wanted a reusable type for things like normalized coordinates and viewport-like domains, but my first naming instinct was `Range`, which is not ideal in modern C++ because `std::ranges` already uses that word for iterable sequences.
 
 `Interval` turned out to be the better name because it matches the mathematical idea directly: values between two endpoints, possibly **open** or **closed** on either side.
 
@@ -187,13 +181,13 @@ void FillImage(ImageDataType image_data) {
 }
 ```
 
-This was a good reminder that:
+This was a good reminder for me that:
 
 > `memset()` is for bytes, not for “set every element of an array to this typed value”.
 
 ## Render context was carrying too much authority
 
-The other design issue I hit was in the rasterizer pipeline.
+The other design issue I hit was in the rasterizer pipeline itself.
 
 Originally, a single `RenderContext` owned:
 
@@ -228,7 +222,7 @@ The most useful takeaway from this refactor was not a rendering formula. It was 
 4. **If I want to initialize typed arrays, use typed algorithms, not `memset()`.**
 5. **If a rendering object owns too many responsibilities, split it by authority, not just by data members.**
 
-That is probably the most valuable part of this stage of the rasterizer project. The triangle still rasterizes the same way, but the code now says more clearly who is responsible for what, and the compiler helps more with mistakes that should never compile in the first place.
+For me, that was probably the most valuable part of this stage of the rasterizer project. The triangle still rasterizes the same way, but the code now says more clearly who is responsible for what, and the compiler helps more with mistakes that should never compile in the first place.
 
 ## Related
 

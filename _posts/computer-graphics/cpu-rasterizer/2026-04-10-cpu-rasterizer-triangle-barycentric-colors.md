@@ -1,22 +1,19 @@
 ---
 title: "CPU rasterizer (1): Triangle fill with barycentric coordinates and interpolated colors"
 date: 2026-04-10
+ai_assisted: true
 tags:
-  - personal-project
-  - computer-graphics
-  - cpu-rasterizer
-  - rasterization
-  - amit-labs
-  - "2026"
+  - graphics
+  - rendering
 ---
 
-This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. Later posts will go deeper (depth, textures, and beyond). This one walks three milestones: **wireframe edges**, **inside tests with an edge function and bounding box**, then **barycentric weights for smooth per-vertex colors**.
+This is the **first** post in a **CPU rasterizer** series I am writing alongside my [Amit Labs](https://github.com/amitprakash07/amit-labs) work. I wanted to start from a simple place and build it step by step. In this post, that means three things: **wireframe edges**, **inside tests with an edge function and bounding box**, and then **barycentric weights for smooth per-vertex colors**.
 
-The C++ below is **illustrative** of each idea; the full wiring lives in the repo under `source/projects/cpu_rasterizer`.
+The C++ below is mainly there to explain the ideas clearly. The full wiring lives in the repo under `source/projects/cpu_rasterizer`.
 
 ## Motivation
 
-I wanted to see how a triangle turns into shaded pixels without the GPU yet—edges first, then “is this pixel inside?”, then the same signed areas as **barycentric coordinates** for interpolation.
+I wanted to see how a triangle turns into shaded pixels without depending on the GPU yet. For me, the right order was: edges first, then “is this pixel inside?”, and then the same signed areas again as **barycentric coordinates** for interpolation.
 
 ## Step 1 — Triangle edges
 
@@ -167,4 +164,4 @@ Same shading with the **bounding box** overlaid:
 
 ## Closing
 
-From here the same weights extend naturally to **depth**, **UVs**, and normals. This post stops where the first milestone felt solid: a **filled triangle** with **colors driven by barycentric interpolation**.
+From here the same weights extend naturally to **depth**, **UVs**, and normals. For this first milestone, I wanted to stop at the point where the basic triangle fill felt solid: a **filled triangle** with **colors driven by barycentric interpolation**.

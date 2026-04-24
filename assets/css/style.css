@@ -257,6 +257,14 @@ article.post {
   line-height: 1.5;
 }
 
+.post__ai-note {
+  margin: 2rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 /* Markdown images: never wider than the text column (exclude home hero portrait) */
 .post__content img,
 .page img:not(.home-hero__image) {

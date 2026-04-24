@@ -1,16 +1,13 @@
 ---
 title: "CPU rasterizer (2): Framebuffer text overlay (pixel stats and timings)"
 date: 2026-04-11
+ai_assisted: true
 tags:
-  - personal-project
-  - computer-graphics
-  - cpu-rasterizer
-  - rasterization
-  - amit-labs
-  - "2026"
+  - graphics
+  - rendering
 ---
 
-This post explains **how I draw the on-screen labels** you see in the CPU rasterizer screenshots—things like **pixel counts** and **timings**—as **text rendered into the same color buffer** after the triangle (or wireframe) pass, so the stats are **baked into the saved image** rather than coming from the web page.
+This post is about a small thing, but I liked it a lot while building the CPU rasterizer: drawing **pixel counts** and **timings** directly into the framebuffer. The text is rendered into the same color buffer after the triangle (or wireframe) pass, so the stats become part of the saved image instead of living somewhere outside it.
 
 The implementation lives in the same project as [CPU rasterizer (1): Triangle fill with barycentric coordinates and interpolated colors]({% post_url 2026-04-10-cpu-rasterizer-triangle-barycentric-colors %}) under `source/projects/cpu_rasterizer`.
 
@@ -44,7 +41,7 @@ amit::graphics::TextOverlay::Render(stats, 10, 20, amit::graphics::kRgb8ColorWhi
 amit::image::WriteColorBufferToPPM(color_buffer, "output.ppm");
 ```
 
-That ordering matters. The triangle rasterizer and pixel shader produce the image first; the text overlay is just a final 2D write into the same color target.
+That ordering matters. First the rasterizer and pixel shader produce the image, and after that the overlay just writes text into the same color target.
 
 ## Bitmap font, not UI text
 
@@ -56,7 +53,7 @@ At render time:
 - look up the glyph by ASCII code
 - for every set bit in the 8x8 glyph, write one destination pixel into the color buffer
 
-That gives a tiny monospace overlay without needing any OS or browser text rendering.
+That gives me a tiny monospace overlay without needing any OS or browser text rendering.
 
 ## The actual rendering loop
 
@@ -120,7 +117,7 @@ void TextOverlay::RenderGlyph(const char* bitmap,
 }
 ```
 
-This is exactly the kind of implementation I like in a CPU rasterizer project: simple, explicit, and easy to debug. There is no abstraction barrier hiding what is really happening. A glyph is just a tiny bitmap, and drawing text is just drawing a lot of pixels.
+This is exactly the kind of implementation I like in a CPU rasterizer project: simple, explicit, and easy to debug. Nothing is hiding behind a large abstraction here. A glyph is just a tiny bitmap, and drawing text is just drawing more pixels.
 
 ## What the stats string contains
 
@@ -139,7 +136,7 @@ So the overlay is effectively a tiny HUD for the render pass. Because it is writ
 - It is easy to port anywhere the `ColorBuffer` exists.
 - It reinforces the idea that the framebuffer is just another writable 2D image.
 
-For now, this overlay is intentionally minimal: fixed-size font, fixed color, and top-left placement. That is enough for profiling and debugging, and it fits the spirit of the CPU rasterizer well.
+For now, this overlay is intentionally minimal: fixed-size font, fixed color, and top-left placement. That is enough for profiling and debugging, and it fits the spirit of this project well.
 
 ## Related
 
