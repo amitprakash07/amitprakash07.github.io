@@ -1,0 +1,51 @@
+---
+layout: page
+title: Blog Tags
+---
+
+{% assign tags_sorted = site.tags | sort %}
+
+<div class="tag-index">
+  <p class="tag-index__intro">
+    Browse posts by tag. This is a lightweight cross-cut across the main blog sections.
+  </p>
+
+  <div class="card tag-index__nav-card">
+    <div class="tag-index__nav-title">Tags</div>
+    <div class="tag-index__nav-list">
+      {% for tag in tags_sorted %}
+        {% assign tag_name = tag[0] %}
+        {% assign posts = tag[1] %}
+        <a class="tag-index__pill" href="#tag-{{ tag_name | slugify }}">
+          {{ tag_name }} <span class="tag-index__count">{{ posts | size }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="tag-index__sections">
+    {% for tag in tags_sorted %}
+      {% assign tag_name = tag[0] %}
+      {% assign posts = tag[1] %}
+      <section class="tag-index__section" id="tag-{{ tag_name | slugify }}">
+        <div class="tag-index__section-heading-row">
+          <h2 class="tag-index__section-heading">{{ tag_name }}</h2>
+          <span class="tag-index__section-count">{{ posts | size }} post{% if posts.size != 1 %}s{% endif %}</span>
+        </div>
+
+        <div class="blog-index-card-grid">
+          {% assign posts_sorted = posts | sort: "date" | reverse %}
+          {% for post in posts_sorted %}
+            <article class="card blog-index-card">
+              <div class="blog-index-card__date">{{ post.date | date: "%b %d, %Y" }}</div>
+              <div class="blog-index-card__title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+              {% if post.excerpt %}
+              <div class="blog-index-card__excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+</div>

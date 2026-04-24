@@ -8,6 +8,13 @@ layout: default
     {%- if page.date -%}
       <p class="post__meta">{{ page.date | date: "%b %d, %Y" }}</p>
     {%- endif -%}
+    {%- if page.tags and page.tags.size > 0 -%}
+      <div class="post__tags" aria-label="Post tags">
+        {%- for tag in page.tags -%}
+          <a class="post__tag" href="{{ '/blogs/tags/' | relative_url }}#tag-{{ tag | slugify }}">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </header>
 
   <div class="post__content">

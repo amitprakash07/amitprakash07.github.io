@@ -19,7 +19,7 @@ clear() - This function contains the platform (OpenGl/DirectX) specific code to 
 
 beginScene() - this function is a stub for OpenGL and calls to directX begin scene function in DirectX implementation
 
-Engine::Scene::getRenderableScene()->drawScene() - This functions actually draws all of the game objects in the renderable scene
+amit::Scene::getRenderableScene()->drawScene() - This functions actually draws all of the game objects in the renderable scene
 
 endScene() - this function is similar to the beginScene(). It is a stub for OpenGL and contains directX end Scene function in DirectX implmentation.
 

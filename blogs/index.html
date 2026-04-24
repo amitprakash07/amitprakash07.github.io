@@ -91,6 +91,9 @@ title: Blog
   <aside class="blog-index-sidebar" aria-label="Blog navigation">
     <div class="card blog-index-sidebar__card">
       <div class="blog-index-sidebar__title">Browse</div>
+      <p class="blog-index-sidebar__meta-link">
+        <a href="{{ '/blogs/tags/' | relative_url }}">Browse by tag</a>
+      </p>
       <nav class="blog-index-sidebar__nav" aria-label="By year and topic">
         <ul class="blog-index-sidebar__list">
           {% for year in years_desc %}
