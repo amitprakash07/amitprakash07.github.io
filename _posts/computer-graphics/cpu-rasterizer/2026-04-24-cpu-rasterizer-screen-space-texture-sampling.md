@@ -17,6 +17,10 @@ generated Image2D<Rgb8> -> Texture<Rgb8> -> interpolated fragment UV -> color bu
 
 That gives the rasterizer a real texture sampling step while keeping the implementation easy to inspect.
 
+Here is the result: the first submitted triangle uses the generated checkerboard texture, while the second triangle keeps the interpolated vertex-color shader.
+
+![Screen-space checkerboard texture sampled on one triangle]({{ '/assets/img/blog/2026/cpu-rasterizer/04-screen-space-texture-sampling/01_checkerboard_textured_triangle.jpg' | relative_url }})
+
 ## Starting point
 
 At this stage, the rasterizer is still operating directly in screen space. The sample program creates triangle vertices with positions already in viewport coordinates, then derives a simple UV from those positions:
