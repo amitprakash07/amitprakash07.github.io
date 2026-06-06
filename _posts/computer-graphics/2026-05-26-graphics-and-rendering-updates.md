@@ -1,28 +1,70 @@
 ---
-title: "Graphics and neural rendering weekly updates"
+title: "Graphics and rendering updates"
 date: 2026-05-26
 ai_assisted: true
 tags:
   - graphics
   - rendering
   - neural-rendering
-  - weekly-update
+  - rendering-updates
 ---
 
-This is a running weekly update log for my graphics and neural rendering work in
-[Amit Labs](https://github.com/amitprakash07/amit-labs).
+This is a running update log for my graphics and rendering work in
+[Amit Labs](https://github.com/amitprakash07/amit-labs), including the path toward
+neural rendering.
 
 The milestone posts are still where I write the deeper technical explanations.
-This page is different: it is an accountability log. Each week should capture what
-actually happened, what shipped, what slipped, what I learned, and which artifact
-or post came out of the work.
+This page is different: it is an accountability log. Each entry should capture what
+actually happened at a milestone (or between milestones), what shipped, what slipped,
+what I learned, and which artifact or post came out of the work.
 
-Newest updates go first. Starting in June 2026, I want to update this log weekly,
-including weeks where progress is mostly planning, debugging, or cleanup.
+Newest updates go first. I add an entry when there is meaningful progress—not on a
+fixed weekly schedule.
 
 ---
 
-## Week of May 26, 2026
+## Update — June 3, 2026
+
+### Focus
+
+Make the graphics-pipeline MVP real, fix matrix layout vs. multiply convention, and
+prove depth-buffer behavior on overlapping geometry.
+
+### Shipped
+
+- Wired a real model matrix (scale, then translate), look-at view matrix, and
+  left-handed perspective projection into `RasterizeGraphicsPipeline()`.
+- Fixed column-major matrix layout so local-space geometry survives clip space
+  instead of rasterizing zero pixels.
+- Integrated depth testing so overlapping triangles resolve correctly in the final
+  framebuffer.
+- Demonstrated color interpolation and checkerboard texture sampling through the
+  full local → clip → screen path.
+- Published milestone post 7 with a screenshot that validates transforms and depth
+  together.
+
+### Missed / Still Open
+
+- The demo quad is still hand-authored; OBJ adapter loading is not wired yet.
+- `MakeModelMatrix()` has no rotation yet.
+- Clipping is still trivial reject only; partial clip is not implemented.
+- Cornell Box is still ahead.
+
+### Learned
+
+- When rasterized pixel count drops to zero, the bug is not always in the
+  rasterizer—matrix layout and multiply convention can drop geometry before
+  rasterization starts.
+- Phase 1 MVP / depth / texture work is largely functional for this scope; the
+  rasterizer is now camera-shaped, not just pipeline-shaped.
+
+### Links
+
+- Milestone post: [CPU rasterizer (7): MVP transforms, matrix layout, and depth-buffer proof]({% post_url 2026-06-03-cpu-rasterizer-mvp-matrix-layout-and-depth-buffer %})
+
+---
+
+## Update — May 26, 2026
 
 ### Focus
 
@@ -52,7 +94,7 @@ model/view/projection flow.
 ### Learned
 
 - The roadmap should not change every time execution changes. The milestone plan
-  should stay stable; weekly updates should capture execution reality.
+  should stay stable; this log should capture execution reality.
 - Projection is a view-to-clip transform, not a view-to-screen transform.
 - Scaling the same local-space quad is a clean way to prove that MVP is doing
   real work.
@@ -63,7 +105,7 @@ model/view/projection flow.
 
 ---
 
-## Week of May 19, 2026
+## Update — May 19, 2026
 
 ### Focus
 
@@ -100,7 +142,7 @@ geometry.
 
 ---
 
-## Week of Apr 21, 2026
+## Update — Apr 21, 2026
 
 ### Focus
 
@@ -138,7 +180,7 @@ Strengthen the CPU rasterizer architecture after triangle fill started working.
 
 ---
 
-## Week of Apr 14, 2026
+## Update — Apr 14, 2026
 
 ### Focus
 
@@ -166,7 +208,7 @@ system.
 
 ---
 
-## Week of Apr 3, 2026
+## Update — Apr 3, 2026
 
 ### Focus
 
