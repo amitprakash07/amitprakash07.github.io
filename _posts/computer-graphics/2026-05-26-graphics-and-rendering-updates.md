@@ -23,6 +23,56 @@ fixed weekly schedule.
 
 ---
 
+## Update — July 30, 2026
+
+### Focus
+
+Move from hand-authored graphics-pipeline geometry to imported OBJ geometry, render a
+Cornell Box through the CPU rasterizer, and debug a camera-basis convention issue.
+
+### Shipped
+
+- Added a `graphics_asset` OBJ adapter path that converts imported OBJ mesh data into
+  renderer-owned `MeshData` while keeping the original source mesh available for
+  debugging.
+- Added OBJ-based demos for a textured quad and the Cornell Box scene.
+- Added Cornell Box assets and carried MTL diffuse (`Kd`) colors into the rasterizer
+  output.
+- Fixed unsafe `Vector3` / `Vector4` reference-backed component aliases so copied
+  vectors keep correct value semantics.
+- Fixed the look-at camera basis so view-space +X maps to camera-right instead of
+  camera-left.
+- Published milestone post 8 with the Cornell Box output and the camera-basis
+  debugging story.
+
+### Missed / Still Open
+
+- The Cornell Box render is still flat material color; there is no lighting,
+  normal-based shading, shadows, or edge overlay yet.
+- Boxes are hard to read because the floor, back wall, ceiling, and boxes share the
+  same off-white material.
+- Clipping is still trivial reject only; partial triangle clipping remains future
+  work.
+- Perspective-correct interpolation is still future work.
+
+### Learned
+
+- A real asset can expose coordinate-system bugs that a hand-authored quad does not.
+- Comparing OBJ/MTL metadata against the rendered image is a powerful debugging
+  technique: the asset said `leftWall` was red and `rightWall` was green, but the
+  first image showed them reversed.
+- In this renderer, row-vector multiply, D3D-style left-handed projection, screen X
+  mapping, and look-at basis construction all have to agree. Using camera-left as the
+  view X basis produced a plausible but mirrored image.
+- Lighting is not required to close this milestone. The critical path was proving OBJ
+  ingestion, material color propagation, transform correctness, and rasterization.
+
+### Links
+
+- Milestone post: [CPU rasterizer (8): OBJ Cornell Box and a camera-basis bug]({% post_url 2026-07-30-cpu-rasterizer-obj-cornell-box-camera-basis %})
+
+---
+
 ## Update — June 3, 2026
 
 ### Focus
